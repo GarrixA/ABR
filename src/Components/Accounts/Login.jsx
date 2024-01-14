@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../images/RAB_Logo2.png";
 import "../../index.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
+  const [load, setLoad] = useState(false)
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -21,7 +24,7 @@ const Login = () => {
   const validatePassword = () => {
     let error = "";
   
-    if (password.length < 8) {
+    if (password.length < 4) {
       error = "Password must be at least 8 characters long at least one digit one special character one upper and lowercase letter";
     } else if (!/\d/.test(password)) {
       error = "Digit is missing";
@@ -38,9 +41,32 @@ const Login = () => {
   
 
   const handleSubmit = (e) => {
+    setLoad(true)
     e.preventDefault();
     
-    console.log("Form submitted successfully!");
+    validateEmail();
+    validatePassword();
+    if (
+      emailError ||
+      passwordError
+    )  {
+      const firstError = (
+        emailError ||
+        passwordError
+      )
+
+      toast.error(`${firstError}`);
+      setLoad(false)
+    } else {
+      setLoad(false)
+      toast.success("Form submitted successfully!");
+      setTimeout(()=>{
+        navigate("/dashboard")
+      }, 5000)
+      
+    }
+  
+   
   };
 
   return (
@@ -82,9 +108,9 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 onInput={validateEmail}
               />
-              {emailError && (
+              {/* {emailError && (
                 <span className="validation-error">{emailError}</span>
-              )}
+              )} */}
             </div>
             <div className="flex flex-col py-3">
               <label>Password</label>
@@ -97,9 +123,9 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 onInput={validatePassword}
               />
-              {passwordError && (
+              {/* {passwordError && (
                 <span className="validation-error">{passwordError}</span>
-              )}
+              )} */}
             </div>
 
             <span className="text-blue-800 font-semibold underline cursor-pointer">
@@ -107,10 +133,11 @@ const Login = () => {
             </span>
 
             <button className="bg-[#1a8cff] py-1 mt-4 rounded uppercase text-white font-semibold">
-              Log in
+              {load? "Loging in..." : "Login"}
             </button>
           </form>
         </div>
+        <ToastContainer/>
       </div>
     </>
   );
