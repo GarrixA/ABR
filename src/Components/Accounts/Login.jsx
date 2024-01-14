@@ -58,9 +58,10 @@ const Login = () => {
       toast.error(`${firstError}`);
       setLoad(false)
     } else {
-      setLoad(false)
+      setLoad(true)
       toast.success("Form submitted successfully!");
       setTimeout(()=>{
+        setLoad(false)
         navigate("/dashboard")
       }, 5000)
       

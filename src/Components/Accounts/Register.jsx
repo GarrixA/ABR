@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../images/RAB_Logo2.png";
 import "../../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const [nationalId, setNationalId] = useState("");
   const [password, setPassword] = useState("");
@@ -109,6 +110,7 @@ const Register = () => {
       setTimeout(() =>{
         toast.success("Form submitted successfully!");
         setLoad(false)
+        navigate("/")
       }, 3000)
     }
   };
