@@ -19,21 +19,27 @@ const Login = () => {
   };
 
   const validatePassword = () => {
-    const passwordRegex =
-      /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
-    if (!passwordRegex.test(password)) {
-      setPasswordError(
-        "Password must contain at least one capital letter, one number, and one special character"
-      );
-    } else {
-      setPasswordError("");
+    let error = "";
+  
+    if (password.length < 8) {
+      error = "Password must be at least 8 characters long at least one digit one special character one upper and lowercase letter";
+    } else if (!/\d/.test(password)) {
+      error = "Digit is missing";
+    } else if (!/[!@#$%^&*]/.test(password)) {
+      error = "Special character is missing";
+    } else if (!/[a-z]/.test(password)) {
+      error = "Lowercase letter is missing";
+    } else if (!/[A-Z]/.test(password)) {
+      error = "Uppercase letter is missing";
     }
+  
+    setPasswordError(error);
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Perform login or authentication logic here
+    
     console.log("Form submitted successfully!");
   };
 
