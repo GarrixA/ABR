@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: #f1f1fb;
+}
+
 .wrapper{
     background-image: url('../src/images/cows.jpg');
     background-size: cover;
@@ -12,14 +16,13 @@
     display: inline-block;
     padding: 8px;
     margin-top: 5px;
-    background-color: #f8d7da; /* Light red background color */
-    border: 1px solid #d73d4a; /* Dark red border color */
-    color: #d73d4a; /* Dark red text color */
+    background-color: #f8d7da;
+    border: 1px solid #d73d4a;
+    color: #d73d4a;
     border-radius: 4px;
-    transition: all 0.3s ease; /* Add transition for smoother animation */
+    transition: all 0.3s ease; 
   }
   
   .validation-error:hover {
-    background-color: #f5c6cb; /* Light red background color on hover */
+    background-color: #f5c6cb; 
   }
-  

@@ -1,16 +1,11 @@
-import SideBar from '../Dashboard/SideBar'
-import { Box } from '@mui/material'
+
 
 const MyAccount = () => {
   return (
     <>
-    <Box sx={{ display: 'flex' }}>
-    <SideBar/>
-    <h1>My account</h1>
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      
-    </Box>
-    </Box>
+    <div className="mt-20 text-[1.3rem] font-bold">
+     <h1 className="ml-5">My account</h1>
+    </div>
  </>
   )
 }
