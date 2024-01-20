@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  background-color: #f1f1fb;
+}
+
+.wrapper{
+    background-image: url('../src/images/cows.jpg');
+    background-size: cover;
+    
+}
+
+.validation-error {
+    display: inline-block;
+    padding: 8px;
+    margin-top: 5px;
+    background-color: #f8d7da;
+    border: 1px solid #d73d4a;
+    color: #d73d4a;
+    border-radius: 4px;
+    transition: all 0.3s ease; 
+  }
+  
+  .validation-error:hover {
+    background-color: #f5c6cb; 
+  }
+
+  .tableWrapper{
+    .tables{
+      display: block;
+      overflow: hidden;
+      table-layout: auto;
+      border-collapse: collapse;
+      box-shadow: 0px 10px 10px #ccc;
+      border-radius: 10px;
+      white-space: nowrap;
+      width: 100%;
+      margin: auto;
+      overflow-x: auto;
+      thead{
+        background-color: #ccc;
+        color: #222;
+        text-align: left;
+      }
+      th,td{
+        padding: 0.8rem;
+      }
+      td{
+        border-top: .5px solid #ddd;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      tbody{
+        tr:hover{
+          background-color: #cccccc6d;
+        }
+      }
+    }
+    .expand{
+      width: 1%;
+    }
+
+    .paginationBttns a{
+      padding: 10px;
+      margin: 8px;
+      border-radius: 5px;
+      border: 1px solid skyblue;
+      color: #006ca5;
+    }
+    .paginationBttns a:hover{
+      color: white;
+      background-color: #006ca5;
+    }
+
+    .paginationActive a{
+      background-color: #006ca5;
+      color: #fff;
+    }
+  }

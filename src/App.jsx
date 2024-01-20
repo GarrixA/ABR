@@ -11,6 +11,9 @@ import Layout from "./Components/Pages/Layout";
 import Landing from "./Components/Pages/Landing";
 import SideBar from "./Components/Bars/SideBar";
 import Nopage from "./Components/Pages/Nopage";
+import EditVet from "./Components/DashComponents/Crude vet/EditVet";
+import AllVets from "./Components/DashComponents/Crude vet/AllVets";
+// import Table from "./Components/Table";
 
 export default function App() {
   return (
@@ -22,6 +25,7 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="resetpassword" element={<Reset />} />
             <Route path="register" element={<Register />} />
+            {/* <Route path="table" element={<Table/>}/> */}
             <Route path="*" element={<Nopage/>}/>
           </Route>
           <Route path="dashboard" element={<SideBar />}>
@@ -30,6 +34,8 @@ export default function App() {
             <Route path="mccs" element={<MCCs />} />
             <Route path="veternaries" element={<Veternaries />} />
             <Route path="myaccout" element={<MyAccount />} />
+            <Route path="editvet" element={<EditVet/>}/>
+            <Route path="allvets" element={<AllVets/>}/>
             <Route path="*" element={<Nopage/>}/>
           </Route>
         </Routes>

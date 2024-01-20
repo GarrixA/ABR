@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../images/RAB_Logo2.png";
-import "../../index.css";
+import "../../index.scss";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const [load, setLoad] = useState(false)
+  const [load, setLoad] = useState()
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,8 +67,6 @@ const Login = () => {
       }, 5000)
       
     }
-  
-   
   };
 
   return (
@@ -134,7 +133,7 @@ const Login = () => {
             </span>
 
             <button className="bg-[#1a8cff] py-1 mt-4 rounded uppercase text-white font-semibold">
-              {load? "Loging in..." : "Login"}
+              {load ? "Loging in..." : "Login"}
             </button>
           </form>
         </div>

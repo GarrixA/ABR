@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../images/RAB_Logo2.png";
-import "../../index.css";
+import "../../index.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
