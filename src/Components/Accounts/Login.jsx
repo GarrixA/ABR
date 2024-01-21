@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../images/RAB_Logo2.png";
@@ -29,9 +30,11 @@ const Login = () => {
       error = "Password must be at least 8 characters long at least one digit one special character one upper and lowercase letter";
     } else if (!/\d/.test(password)) {
       error = "Digit is missing";
-    } else if (!/[!@#$%^&*]/.test(password)) {
-      error = "Special character is missing";
-    } else if (!/[a-z]/.test(password)) {
+    } 
+    // else if (!/[!@#$%^&*]/.test(password)) {
+    //   error = "Special character is missing";
+    // }
+     else if (!/[a-z]/.test(password)) {
       error = "Lowercase letter is missing";
     } else if (!/[A-Z]/.test(password)) {
       error = "Uppercase letter is missing";
@@ -60,10 +63,17 @@ const Login = () => {
       setLoad(false)
     } else {
       setLoad(true)
-      toast.success("Form submitted successfully!");
       setTimeout(()=>{
         setLoad(false)
-        navigate("/dashboard")
+        if (email === "admin@gmail.com" && password === "Admin123") {
+          navigate("/dashboard");
+        } else if (email === "vet@gmail.com" && password === "Vet123") {
+          navigate("/vetdashboard");
+        } else if (email === "mcc@gmail.com" && password === "Mcc123") {
+          navigate("/mccdashboard");
+        }else{
+          navigate("/")
+        }
       }, 5000)
       
     }

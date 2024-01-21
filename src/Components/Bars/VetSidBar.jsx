@@ -5,17 +5,15 @@ import { RiDashboardFill } from "react-icons/ri";
 import { LuMilk } from "react-icons/lu";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { MdLogout } from "react-icons/md";
-import { IoMdPerson } from "react-icons/io";
 
-const SideBar = () => {
+const VetSideBar = () => {
 
   let auth = {'token' : true}
 
   const navigations = [
-    {icon: <RiDashboardFill />, name: "Dashboard", href: "/dashboard"},
-    {icon: <LuMilk />, name: "Production", href: "/dashboard/production"},
-    {icon: <HiBuildingOffice2 />, name: "MCCs", href: "/dashboard/mccs"},
-    {icon: <IoMdPerson />, name: "Veternaries", href: "/dashboard/veternaries"},
+    {icon: <RiDashboardFill />, name: "Dashboard", href: "/vetdashboard"},
+    {icon: <LuMilk />, name: "Production", href: "/vetdashboard/vetproduction"},
+    {icon: <HiBuildingOffice2 />, name: "MCCs", href: "/vetdashboard/vetmccs"},
     {icon: <MdLogout />, name: "Log Out", href: "/login"},
   ]
 
@@ -28,7 +26,7 @@ const SideBar = () => {
           <Link to={"/"}><img src={image} alt="img" className=" object-contain" /></Link>
           </div>
           <div className="text font-bold uppercase">
-            <span className="text-[1.3rem]">Admin</span>
+            <span className="text-[1.3rem]">Vet</span>
           </div>
         </div>
         <div className="links flex flex-col space-y-4 text-[1.2rem] font-semibold px-6 bg-[#009048]">
@@ -46,7 +44,7 @@ const SideBar = () => {
       {/* Right side */}
       <div className="rightSide w-[85%] h-screen absolute right-0 ">
         <div className="top h-16 w-full bg-slate-600 fixed flex items-center z-30">
-          Hi admin!
+          Hi Vet Gasana!
         </div>
         {/* <Outlet /> */}
         {auth.token ? <Outlet/> : <Navigate to={"/login"}/>}
@@ -55,4 +53,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default VetSideBar;

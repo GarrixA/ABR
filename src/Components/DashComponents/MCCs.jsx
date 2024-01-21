@@ -1,8 +1,7 @@
 import vetData from "./VetArray";
-import { RiAddCircleFill } from "react-icons/ri";
 import "../../index.scss";
 import { useRef, useState } from "react";
-import Modal from "./Crude vet/Modal";
+import Modal from "./CrudeVet/Modal";
 import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

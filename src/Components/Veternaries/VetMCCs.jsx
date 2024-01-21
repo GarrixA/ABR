@@ -4,16 +4,14 @@ import { FaEdit } from "react-icons/fa";
 import { RiAddCircleFill } from "react-icons/ri";
 import "../../index.scss";
 import { useState } from "react";
-import Modal from "./CrudeVet/Modal";
+import Modal from "./CrudeVetenary/VetModal";
 import { Link } from "react-router-dom";
-// import ReactToPrint from "react-to-print";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
 
-const Veternaries = () => {
+const VetMCCs = () => {
   const [openModal, setOpenModal] = useState(false);
-  // const componentRef = useRef(null);
   const columns = [
     {
       name: "Name",
@@ -47,7 +45,7 @@ const Veternaries = () => {
             <td>{item.district}</td>
             <td>Active</td>
             <td className="flex justify-evenly">
-              <Link to={"/dashboard/editvet"}>
+              <Link to={"/vetdashboard/editemployee"}>
                 <span className="text-green-700 cursor-pointer">
                   <FaEdit />
                 </span>
@@ -65,7 +63,7 @@ const Veternaries = () => {
     <>
       <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
         <div className="flex justify-between items-center">
-          <h1 className="mb-5">Veternaries</h1>
+          <h1 className="mb-5">Employees</h1>
           <button
             className="mx-3 bg-[#006ca5] px-2 py-1 text-white rounded flex items-center space-x-2"
             onClick={matchModal}
@@ -74,7 +72,7 @@ const Veternaries = () => {
           </button>
         </div>
         
-        <Link to={"/dashboard/allvets"}><button className="text-green-700 mx-2 top-28 left-40 absolute px-5">Export</button></Link>
+        <Link to={"/vetdashboard/allemployees"}><button className="text-green-700 mx-2 top-28 left-40 absolute px-5">Export</button></Link>
         <table
           className="tables pt-2"
           // ref={(el) => (componentRef.current = el)}
@@ -113,6 +111,6 @@ const Veternaries = () => {
       </div>
     </>
   );
-};
+}
 
-export default Veternaries;
+export default VetMCCs
