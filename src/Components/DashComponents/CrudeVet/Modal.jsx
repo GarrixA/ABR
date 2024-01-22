@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import provinces from "./Province";
+import provinces from "./province";
 import distr from "./district";
 
 const Modal = ({ matchModal }) => {
