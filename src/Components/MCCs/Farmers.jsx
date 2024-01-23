@@ -61,11 +61,11 @@ const Farmers = () => {
 
   return (
     <>
-      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
+      <div className="tableWrapper mt-28  font-bold mx-10">
         <div className="flex justify-between items-center">
-          <h1 className="mb-5">Farmers</h1>
+          <h1 className="mb-5 text-[1.3rem]">Farmers</h1>
           <button
-            className="mx-3 bg-[#006ca5] px-2 py-1 text-white rounded flex items-center space-x-2"
+            className="mx-1 bg-[#006ca5] px-3 py-2 text-white rounded flex items-center space-x-2"
             onClick={matchModal}
           >
             <RiAddCircleFill className="text-[1.8rem]" /> <span>Register</span>
@@ -90,11 +90,11 @@ const Farmers = () => {
               );
             })}
           </thead>
-          <tbody className="text-slate-700">{displayData}</tbody>
+          <tbody className="">{displayData}</tbody>
         </table>
         {openModal && <Modal matchModal={matchModal} />}
         <ToastContainer />
-        <div className="mt-10">
+        <div className="mt-10 pb-10">
           <ReactPaginate
             previousLabel={"Prev"}
             nextLabel={"Next"}

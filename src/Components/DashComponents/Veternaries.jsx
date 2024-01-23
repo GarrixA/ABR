@@ -63,9 +63,9 @@ const Veternaries = () => {
 
   return (
     <>
-      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
+      <div className="tableWrapper mt-28  font-bold mx-10">
         <div className="flex justify-between items-center">
-          <h1 className="mb-5">Veternaries</h1>
+          <h1 className="mb-5 text-[1.3rem]">Veternaries</h1>
           <button
             className="mx-3 bg-[#006ca5] px-2 py-1 text-white rounded flex items-center space-x-2"
             onClick={matchModal}
@@ -97,7 +97,7 @@ const Veternaries = () => {
         </table>
         {openModal && <Modal matchModal={matchModal} />}
         <ToastContainer />
-        <div className="mt-10">
+        <div className="mt-10 pb-10">
           <ReactPaginate
             previousLabel={"Prev"}
             nextLabel={"Next"}

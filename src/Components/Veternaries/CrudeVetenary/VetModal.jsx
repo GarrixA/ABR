@@ -67,7 +67,7 @@ const Modal = ({ matchModal }) => {
         className="mt-20 ml-10 text-[1rem] flex items-center justify-center  w-full absolute  top-[-1rem] left-[-2.3rem] h-screen "
         onClick={matchModal}
       ></div>
-      <div className="w-[50%] bg-white p-10 rounded-lg shadow z-10">
+      <div className="w-[50%] bg-[#009048]  text-white p-10 rounded-lg shadow z-10">
         <h1 className="text-2xl relative bottom-4 left-[-1rem]">Register</h1>
         <form className=" w-full ">
           <div className="grid grid-cols-2">
@@ -77,7 +77,7 @@ const Modal = ({ matchModal }) => {
                 required
                 type="text"
                 placeholder="Full name"
-                className="border border-green-700 px-4 py-1 rounded mt-2"
+                className="border border-green-700 px-4 py-1 rounded mt-2 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
@@ -86,7 +86,7 @@ const Modal = ({ matchModal }) => {
                 required
                 type="text"
                 placeholder="email"
-                className="border border-green-700 px-4 py-1 rounded mt-2"
+                className="border border-green-700 px-4 py-1 rounded mt-2 text-black"
               />
             </div>
             <div className="flex flex-col py-1">
@@ -95,7 +95,7 @@ const Modal = ({ matchModal }) => {
                 required
                 type="number"
                 placeholder="phone"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
@@ -104,7 +104,7 @@ const Modal = ({ matchModal }) => {
                 required
                 type="number"
                 placeholder="national ID"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1">
@@ -113,23 +113,13 @@ const Modal = ({ matchModal }) => {
                 required
                 type="password"
                 placeholder="password"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
+            
             <div className="flex flex-col py-1 ml-4">
-              <label>Select Province</label>
-              <select
-                onChange={handleProvinceChange}
-                className="border border-green-700 px-4 py-1 rounded mt-1"
-              >
-                {provinces.map((item, idx) => (
-                  <option key={idx}>{item}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col py-3">
-              <label>Select District</label>
-              <select className="border border-green-700 px-4 py-1 rounded mt-1">
+              <label>Select Sector</label>
+              <select className="border border-green-700 px-4 py-1 rounded mt-1 text-black">
                 {filteredDistricts.map((item, idx) => (
                   <option key={idx}>{item}</option>
                 ))}
@@ -137,7 +127,7 @@ const Modal = ({ matchModal }) => {
             </div>
           </div>
           <div className="">
-            <button className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1">
+            <button className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1 mt-4">
               {load ? "Registering..." : "Register"}
             </button>
           </div>

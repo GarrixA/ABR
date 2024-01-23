@@ -22,7 +22,7 @@ const SideBar = () => {
   return (
     <div className="wrapper flex relative">
       {/* left side */}
-      <div className="leftSide w-[15%] h-screen flex flex-col  fixed left-0 bg-[#009048]">
+      <div className="leftSide w-[15%] h-screen flex flex-col  fixed left-0 shadow-xl bg-[#009048]">
         <div className="log flex items-center py-4 px-6 space-x-2 border border-b-black bg-[#f1f1fb] pb-11">
           <div className="img w-[40%]">
           <Link to={"/"}><img src={image} alt="img" className=" object-contain" /></Link>
@@ -31,7 +31,7 @@ const SideBar = () => {
             <span className="text-[1.3rem]">Admin</span>
           </div>
         </div>
-        <div className="links flex flex-col space-y-4 text-[1.2rem] font-semibold px-6 bg-[#009048]">
+        <div className="links text-white flex flex-col space-y-4 text-[1.2rem] font-semibold px-6 bg-[#009048]">
           {navigations.map((item, idx) =>{
            return( <NavLink 
             key={idx}
@@ -44,9 +44,9 @@ const SideBar = () => {
         </div>
       </div>
       {/* Right side */}
-      <div className="rightSide w-[85%] h-screen absolute right-0 ">
-        <div className="top h-16 w-full bg-slate-600 fixed flex items-center z-30">
-          Hi admin!
+      <div className="rightSide w-[85%] h-screen absolute right-0">
+        <div className="top h-16 w-full fixed flex items-center z-30 bg-[#f1f1fb]">
+          <h1 className="text-2xl font-semibold mx-10">Hi Admin</h1>
         </div>
         {/* <Outlet /> */}
         {auth.token ? <Outlet/> : <Navigate to={"/login"}/>}
