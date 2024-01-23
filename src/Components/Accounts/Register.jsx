@@ -138,7 +138,7 @@ const Register = () => {
             <div className="foot">© All rights reserved. MMPAS 2023</div>
           </div>
         </div>
-        <div className="white bg-white px-10 w-[43%] h-[80%] rounded-r-md flex flex-col justify-center">
+        <div className="white bg-[#f0fff0] px-10 w-[43%] h-[80%] rounded-r-md flex flex-col justify-center">
           <p>RAB Admin</p>
           <h1 className="text-4xl font-bold pb-2">Register</h1>
           <form className=" w-full " onSubmit={handleSubmit}>
@@ -149,7 +149,7 @@ const Register = () => {
                   required
                   type="text"
                   placeholder="Full name"
-                  className="border border-green-700 px-4 py-2 rounded mt-2"
+                  className="border border-dark-green-700 px-4 py-2 rounded mt-2"
                 />
               </div>
               <div className="flex flex-col py-3 ml-4">

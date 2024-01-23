@@ -22,7 +22,7 @@ const ProductionRegister = () => {
               <input type="number" placeholder="eg: 12" className="px-4 py-1 rounded border border-green-600"/>
           </div>
           <div className="manure flex flex-col">
-              <label className="text-xl font-semibold my-1">Manure</label>
+              <label className="text-xl font-semibold my-1">date/month</label>
               <input type="number" placeholder="eg: 12" className="px-4 py-1 rounded border border-green-600"/>
           </div>
           <div className="my-4">
