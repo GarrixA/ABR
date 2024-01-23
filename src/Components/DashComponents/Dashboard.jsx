@@ -1,5 +1,3 @@
-import { LineChart } from '@mui/x-charts/LineChart';
-import { PieChart } from '@mui/x-charts/PieChart';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {Chart as chartJS, defaults} from 'chart.js/auto';
 import chartData from '../Veternaries/CrudeVetenary/data';
