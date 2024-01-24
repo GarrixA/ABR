@@ -53,9 +53,9 @@ const MCCs = () => {
 
   return (
     <>
-      <div className="tableWrapper mt-28  font-bold mx-10 border">
+      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
         <div className="flex justify-between items-center">
-          <h1 className="mb-5 text-[1.3rem]">MCCs</h1>
+          <h1 className="mb-5">MCCs</h1>
         </div>
         <ReactToPrint
           trigger={() => (
@@ -72,7 +72,7 @@ const MCCs = () => {
           className="tables pt-2"
           ref={(el) => (componentRef.current = el)}
         >
-          <thead className="text-[1.1rem]">
+          <thead>
             {columns.map((col, idx) => {
               return (
                 <tr key={idx}>

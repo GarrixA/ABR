@@ -44,8 +44,8 @@ const VetSideBar = () => {
       </div>
       {/* Right side */}
       <div className="rightSide w-[85%] h-screen absolute right-0 ">
-        <div className="top h-16 w-full fixed flex items-center z-30 bg-[#f1f1fb]">
-          <h1 className="text-2xl font-semibold mx-10">Hi Vet Gasana!</h1>
+        <div className="top h-16 w-full fixed flex items-center z-30 bg-[#009048]">
+          <h1 className="text-2xl font-semibold mx-10 text-white">Hi Vet Gasana!</h1>
         </div>
         {/* <Outlet /> */}
         {auth.token ? <Outlet /> : <Navigate to={"/login"} />}

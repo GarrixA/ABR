@@ -117,7 +117,7 @@ const Register = () => {
   return (
     <>
       <div className="wrapper w-full h-screen bg-no-repeat flex justify-center items-center">
-        <div className="blue bg-[#339966] w-[27%] h-[80%] rounded-l-md text-white flex flex-col justify-between">
+        <div className="blue bg-[#009048] w-[27%] h-[80%] rounded-l-md text-white flex flex-col justify-between">
           <div className="top flex flex-col space-y-2 justify-center items-center">
             <div className="tit w-1/3 mt-10">
               <img src={img} alt="image" className=" bg-contain" />
@@ -135,10 +135,10 @@ const Register = () => {
                 </span>
               </Link>
             </div>
-            <div className="foot">© All rights reserved. MMPAS 2023</div>
+            <div className="foot">© All rights reserved. MMPAS 2024</div>
           </div>
         </div>
-        <div className="white bg-white px-10 w-[43%] h-[80%] rounded-r-md flex flex-col justify-center">
+        <div className="white bg-[#fff] px-10 w-[43%] h-[80%] rounded-r-md flex flex-col justify-center">
           <p>RAB Admin</p>
           <h1 className="text-4xl font-bold pb-2">Register</h1>
           <form className=" w-full " onSubmit={handleSubmit}>
@@ -149,7 +149,7 @@ const Register = () => {
                   required
                   type="text"
                   placeholder="Full name"
-                  className="border border-green-700 px-4 py-2 rounded mt-2"
+                  className="border border-dark-green-700 px-4 py-2 rounded mt-2"
                 />
               </div>
               <div className="flex flex-col py-3 ml-4">

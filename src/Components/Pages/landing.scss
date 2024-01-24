@@ -1,0 +1,47 @@
+.landing-nav{
+    // background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 50px;
+    // margin: 35px;
+    .rab-logo1{
+        width: 6em;
+        height: 6em;
+        // background-color: blue;
+        .landing-log{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .landing-btn{
+        gap: 5px;
+        display: flex;
+        .landing-signup{
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #009048;
+            color: #ffffff;
+        }
+        .landing-login{
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #f0fff0;
+            color: #009048;
+        }
+    }
+}
+.text{
+    .mission:hover .icon {
+        color: #f0fff0;
+        
+    }
+    .vision:hover .icon {
+        color: #f0fff0;
+    }
+}

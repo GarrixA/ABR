@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Accounts/Login";
 import Reset from "./Components/Accounts/Reset";
 import Register from "./Components/Accounts/Register";
@@ -36,12 +36,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Landing />} />
+            <Route path="login" element={<Login />} />
             <Route path="resetpassword" element={<Reset />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<Nopage/>}/>
-          </Route>
-          <Route >
-            <Route path="login" element={<Login/>}/>
           </Route>
           <Route path="dashboard" element={<SideBar />}>
             <Route index element={<Dashboard />} />

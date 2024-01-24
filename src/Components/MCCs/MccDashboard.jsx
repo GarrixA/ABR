@@ -1,10 +1,52 @@
+import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import {Chart as chartJS, defaults} from 'chart.js/auto';
+import chartData from '../Veternaries/CrudeVetenary/data';
+defaults.maintainAspectRatio = false,
+defaults.responsive = true
+
 const MccDashboard = () => {
   return (
     <>
-      <div className="mt-20">
+      <div className="mt-32">
         <h1 className="text-[1.3rem] font-bold ml-5">Dashboard</h1>
-        <div className="content mx-8 my-12 p-5 bg-white">
-          Mccs dashbaord
+        <div className='grid grid-cols-2 mx-2 h-96 p-2 mt-10'>
+          <div className='bg-white mx-2 p-2 rounded'>
+            <Line
+              data={{
+                labels: chartData.map((it) => it.label),
+                datasets: [
+                  {
+                    label: "Milk Production",
+                    data: chartData.map((it) => it.value),
+                    barThickness: 60,
+                    backgroundColor: "#c29d59",
+                    borderColor: "#c29d59"
+                    
+                  },             
+                ]
+              }}
+            />
+          </div>
+          <div className=' flex justify-center bg-white mx-2 p-2 rounded'>
+            <div className=' w-[80%]'>
+            <Doughnut
+              data={{
+                labels: chartData.map((it) => it.label),
+                datasets: [
+                  {
+                    label: "Milk Production",
+                    data: chartData.map((it) => it.value),
+                    barThickness: 60,
+                    backgroundColor: [
+                      "#c29d59"
+                    ],
+                  },
+             
+                ]
+              }}
+            />
+            </div>
+          </div>
         </div>
       </div>
     </>

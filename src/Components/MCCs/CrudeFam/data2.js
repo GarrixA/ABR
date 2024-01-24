@@ -1,4 +1,4 @@
-const chartData = [
+const chartData2 = [
     {
         "label": "Jan",
         "value": 10,
@@ -60,5 +60,3 @@ const chartData = [
         "value1": 11
     }
 ]
-
-export default chartData
