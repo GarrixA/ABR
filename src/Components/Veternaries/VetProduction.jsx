@@ -1,99 +1,61 @@
-import { Label } from '@mui/icons-material';
-import {Chart as chartJS, defaults} from 'chart.js/auto';
-import { Line, Bar, Doughnut } from 'react-chartjs-2';
-import chartData from './CrudeVetenary/data';
+import mccData from "./CrudeVetenary/mccData";
+import '../../index.scss'
 
-defaults.maintainAspectRatio = false,
-defaults.responsive = true
 
 const VetProduction = () => {
+  const columns = [
+    {
+      name: "Name",
+      quantity: "Quantity",
+      Date: "Date",
+      Total: "Total"
+    
+    },
+  ];
   return (
     <>
-      <div className="mt-28 text-[1.3rem] font-bold">
-        <h1 className="ml-5">Production</h1>
-        {/* <Bar
-        data={{
-          labels: charts.map((it)=> it.label),
-          datasets: [
-            {
-              label: "Rev",
-              data: charts.map((it) => it.value),
-              barThickness: 60,
-              backgroundColor: [
-                "#c29d59"
-              ]
-            },
-            {
-              label: "RWW",
-              data: charts.map((it) => it.value),
-              barThickness: 60,
-              backgroundColor: [
-                "#c29d"
-              ]
-            },
-          ]
-        }} 
-      /> */}
-        <div className='grid grid-cols-2 mx-2 h-96 p-2 mt-10'>
-          <div className='bg-white mx-2 p-2 rounded'>
-            <Line
-              data={{
-                labels: chartData.map((it) => it.label),
-                datasets: [
-                  {
-                    label: "Rev",
-                    data: chartData.map((it) => it.value),
-                    barThickness: 60,
-                    backgroundColor: "#c29d59",
-                    borderColor: "#c29d59"
-                    
-                  },
-                  {
-                    label: "RWW",
-                    data: chartData.map((it) => it.value1),
-                    barThickness: 60,
-                    backgroundColor: "green",
-                    borderColor: "green"
-                    
-                  },
-                ]
-              }}
-            />
-          </div>
-          <div className=' flex justify-center bg-white mx-2 p-2 rounded'>
-            <div className=' w-[80%]'>
-            <Doughnut
-              data={{
-                labels: chartData.map((it) => it.label),
-                datasets: [
-                  {
-                    label: "Rev",
-                    data: chartData.map((it) => it.value),
-                    barThickness: 60,
-                    backgroundColor: [
-                      "#c29d59"
-                    ],
-                  },
-                  {
-                    label: "RWW",
-                    data: chartData.map((it) => it.value1),
-                    barThickness: 60,
-                    backgroundColor: [
-                      "green"
-                    ],
-                    hoverBackgroundColor:[
-                      "brown"
-                    ]
-                  },
-                ]
-              }}
-            />
-            </div>
-          </div>
+      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
+        <div className="flex justify-between items-center">
+          <h1 className="mb-5">Employees</h1>
         </div>
+      
+        <table
+          className="tables pt-2"
+        
+        >
+          <thead>
+            {columns.map((col, idx) => {
+              return (
+                <tr key={idx}>
+                  <th className="">{col.name}</th>
+                  <th className="">{col.quantity}</th>
+                  <th className="">{col.Date}</th>
+                  <th className="expand">{col.Total}</th>
+                </tr>
+              );
+            })}
+          </thead>
+          <tbody className="text-slate-700">
+            {mccData.map((item, idx) => {
+              return (
+                <>
+                  <tr key={idx}>
+                    <td>{item.name}</td>
+                    <td>{item.quantity} litres</td>
+                    <td>{item.date}</td>
+                    <td>{item.total} litres</td>
+                    
+                  </tr>
+                </>
+              );
+            })}
+          </tbody>
+        </table>
+        
+      
       </div>
     </>
-  )
+  );
 }
 
 export default VetProduction

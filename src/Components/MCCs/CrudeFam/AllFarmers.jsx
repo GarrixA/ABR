@@ -28,7 +28,7 @@ const AllFarmers = () => {
     <>
       <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
         <div className="flex justify-between items-center">
-          <h1 className="mb-5 text-[1.3rem]">Veternaries</h1>
+          <h1 className="mb-5">Veternaries</h1>
         </div>
         <ReactToPrint
           trigger={() => (
@@ -59,7 +59,7 @@ const AllFarmers = () => {
               );
             })}
           </thead>
-          <tbody className="text-[0.9em]">
+          <tbody className="text-slate-700">
             {vetData.map((item, idx) => {
               return (
                 <>

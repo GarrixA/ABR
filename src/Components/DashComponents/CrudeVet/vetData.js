@@ -1,42 +1,42 @@
-const chartData = [
+const vetData = [
     {
         "label": "Jan",
-        "value": 10,
+        "value": 30,
         
     },
     {
         "label": "Feb",
-        "value": 2,
+        "value": 18,
        
     },
     {
         "label": "March",
-        "value": 50,
+        "value": 20,
        
     },
     {
         "label": "April",
-        "value": 40,
+        "value": 28,
         
     },
     {
         "label": "May",
-        "value": 25,
+        "value": 20,
         
     },
     {
         "label": "June",
-        "value": 9,
+        "value": 49,
        
     },
     {
         "label": "July",
-        "value": 30,
+        "value": 70,
        
     },
     {
         "label": "Aug",
-        "value": 70,
+        "value": 60,
         
     },
     {
@@ -56,9 +56,9 @@ const chartData = [
     },
     {
         "label": "Dec",
-        "value": 54,
+        "value": 84,
         "value1": 11
     }
 ]
 
-export default chartData
+export default vetData

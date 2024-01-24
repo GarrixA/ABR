@@ -5,9 +5,9 @@ import Navbar from "../Bars/Navbar"
 const Layout = () => {
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Outlet/>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   )
 }
