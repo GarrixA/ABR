@@ -36,10 +36,12 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Landing />} />
-            <Route path="login" element={<Login />} />
             <Route path="resetpassword" element={<Reset />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<Nopage/>}/>
+          </Route>
+          <Route >
+            <Route path="login" element={<Login/>}/>
           </Route>
           <Route path="dashboard" element={<SideBar />}>
             <Route index element={<Dashboard />} />

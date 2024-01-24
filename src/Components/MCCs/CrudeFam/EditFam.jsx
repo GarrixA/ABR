@@ -60,8 +60,8 @@ const EditFam = () => {
       }
     };
   return (
-    <div className="wrapper mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.6rem] h-screen">
-      <div className="w-[50%] bg-white p-10 rounded-lg shadow z-10">
+    <div className=" mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.6rem] h-screen">
+      <div className="w-[50%] bg-green-700 text-white p-10 rounded-lg shadow z-10">
         <h1 className="text-2xl relative bottom-5 font-bold">Update Farmer</h1>
         <form className=" w-full ">
           <div className="grid grid-cols-2">
@@ -71,7 +71,7 @@ const EditFam = () => {
                 required
                 type="text"
                 placeholder="Full name"
-                className="border border-green-700 px-4 py-1 rounded mt-2"
+                className="border border-green-700 px-4 py-1 rounded mt-2 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
@@ -80,7 +80,7 @@ const EditFam = () => {
                 required
                 type="text"
                 placeholder="email"
-                className="border border-green-700 px-4 py-1 rounded mt-2"
+                className="border border-green-700 px-4 py-1 rounded mt-2 text-black"
               />
             </div>
             <div className="flex flex-col py-1">
@@ -89,7 +89,7 @@ const EditFam = () => {
                 required
                 type="number"
                 placeholder="phone"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
@@ -98,7 +98,7 @@ const EditFam = () => {
                 required
                 type="number"
                 placeholder="national ID"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1">
@@ -107,14 +107,14 @@ const EditFam = () => {
                 required
                 type="password"
                 placeholder="password"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
               <label>Select Province</label>
               <select
                 onChange={handleProvinceChange}
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               >
                 {provinces.map((item, idx) => (
                   <option key={idx}>{item}</option>
@@ -123,7 +123,7 @@ const EditFam = () => {
             </div>
             <div className="flex flex-col py-3">
               <label>Select District</label>
-              <select className="border border-green-700 px-4 py-1 rounded mt-1">
+              <select className="border border-green-700 px-4 py-1 rounded mt-1 text-black">
                 {filteredDistricts.map((item, idx) => (
                   <option key={idx}>{item}</option>
                 ))}

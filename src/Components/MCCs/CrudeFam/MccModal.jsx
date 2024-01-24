@@ -67,9 +67,9 @@ const MccModal = ({ matchModal }) => {
         className="mt-20 ml-10 text-[1rem] flex items-center justify-center  w-full absolute  top-[-1rem] left-[-2.3rem] h-screen "
         onClick={matchModal}
       ></div>
-      <div className="w-[50%] bg-white p-10 rounded-lg shadow z-10">
+      <div className="w-[50%] bg-green-700 text-white p-10 rounded-lg shadow z-10">
         <h1 className="text-2xl relative bottom-4 left-[-1rem]">Register</h1>
-        <form className=" w-full ">
+        <form className=" w-full">
           <div className="grid grid-cols-2">
             <div className="flex flex-col py-1">
               <label>Full Name</label>
@@ -77,7 +77,7 @@ const MccModal = ({ matchModal }) => {
                 required
                 type="text"
                 placeholder="Full name"
-                className="border border-green-700 px-4 py-1 rounded mt-2"
+                className="border border-green-700 px-4 py-1 rounded mt-2 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
@@ -86,7 +86,7 @@ const MccModal = ({ matchModal }) => {
                 required
                 type="text"
                 placeholder="email"
-                className="border border-green-700 px-4 py-1 rounded mt-2"
+                className="border border-green-700 px-4 py-1 rounded mt-2 text-black"
               />
             </div>
             <div className="flex flex-col py-1">
@@ -95,7 +95,7 @@ const MccModal = ({ matchModal }) => {
                 required
                 type="number"
                 placeholder="phone"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
@@ -104,7 +104,7 @@ const MccModal = ({ matchModal }) => {
                 required
                 type="number"
                 placeholder="national ID"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1">
@@ -113,14 +113,14 @@ const MccModal = ({ matchModal }) => {
                 required
                 type="password"
                 placeholder="password"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 px-4 py-1 rounded mt-1 text-black"
               />
             </div>
             <div className="flex flex-col py-1 ml-4">
               <label>Select Province</label>
               <select
                 onChange={handleProvinceChange}
-                className="border border-green-700 px-4 py-1 rounded mt-1"
+                className="border border-green-700 text-black px-4 py-1 rounded mt-1"
               >
                 {provinces.map((item, idx) => (
                   <option key={idx}>{item}</option>
@@ -129,7 +129,7 @@ const MccModal = ({ matchModal }) => {
             </div>
             <div className="flex flex-col py-3">
               <label>Select District</label>
-              <select className="border border-green-700 px-4 py-1 rounded mt-1">
+              <select className="border border-green-700 px-4 text-black py-1 rounded mt-1">
                 {filteredDistricts.map((item, idx) => (
                   <option key={idx}>{item}</option>
                 ))}
