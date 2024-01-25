@@ -22,13 +22,10 @@ const MccSideBar = () => {
   return (
     <div className="wrapper flex relative">
       {/* left side */}
-      <div className="leftSide w-[17%] h-screen flex flex-col  fixed left-0 bg-[#009048]">
-        <div className="log flex items-center pt-2 px-2 space-x-2 border border-b-black bg-[#f1f1fb] pb-11">
-          <div className="img w-[50%] mt-5 mx-10 mb-0">
-            <Link to={"/"}><img src={image} alt="img" className=" object-contain" /></Link>
-          </div>
-          <div className="text font-bold uppercase">
-            
+      <div className="leftSide w-[17%] h-screen flex flex-col  fixed left-0 shadow-xl bg-[#009048] z-10">
+        <div className="log flex items-center justify-center border border-b-black bg-[#f1f1fb] ">
+          <div className="img w-[50%] p-2">
+            <Link to={"/"}><img src={image} alt="img" className=" object-cover" /></Link>
           </div>
         </div>
         <div className="links flex flex-col space-y-4 text-[1.2rem] font-semibold ml-6 bg-[#009048]">

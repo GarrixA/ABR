@@ -72,11 +72,11 @@ const Modal = ({ matchModal }) => {
         <form className=" w-full ">
           <div className="grid grid-cols-2">
             <div className="flex flex-col py-1">
-              <label>Full Name</label>
+              <label>MccName</label>
               <input
                 required
                 type="text"
-                placeholder="Full name"
+                placeholder="MccName"
                 className="border border-green-700 px-4 py-1 rounded mt-2"
               />
             </div>
@@ -98,7 +98,7 @@ const Modal = ({ matchModal }) => {
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div>
-            <div className="flex flex-col py-1 ml-4">
+            {/* <div className="flex flex-col py-1 ml-4">
               <label>National ID</label>
               <input
                 required
@@ -106,8 +106,8 @@ const Modal = ({ matchModal }) => {
                 placeholder="national ID"
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
-            </div>
-            <div className="flex flex-col py-1">
+            </div> */}
+            <div className="flex flex-col py-1 ml-4">
               <label>Password</label>
               <input
                 required
@@ -116,7 +116,7 @@ const Modal = ({ matchModal }) => {
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div>
-            <div className="flex flex-col py-1 ml-4">
+            <div className="flex flex-col py-3 ">
               <label>Select Province</label>
               <select
                 onChange={handleProvinceChange}
@@ -127,7 +127,7 @@ const Modal = ({ matchModal }) => {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col py-3">
+            <div className="flex flex-col py-3 ml-4">
               <label>Select District</label>
               <select className="border border-green-700 px-4 py-1 rounded mt-1">
                 {filteredDistricts.map((item, idx) => (
