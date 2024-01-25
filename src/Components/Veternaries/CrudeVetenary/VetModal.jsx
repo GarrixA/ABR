@@ -62,15 +62,15 @@ const Modal = ({ matchModal }) => {
   };
 
   return (
-    <div className="mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.3rem] h-screen">
+    <div className="mt-20 ml-10 text-[1rem] flex items-center justify-center w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[2rem] md:top-[-1rem] left-[-2.3rem] h-full ">
       <div
         className="mt-20 ml-10 text-[1rem] flex items-center justify-center  w-full absolute  top-[-1rem] left-[-2.3rem] h-screen "
         onClick={matchModal}
       ></div>
-      <div className="w-[50%] bg-white p-10 rounded-lg shadow z-10">
+      <div className="md-[90%] md:w-[50%] bg-white p-10 rounded-lg shadow z-10">
         <h1 className="text-2xl relative bottom-4 left-[-1rem]">Register</h1>
         <form className=" w-full ">
-          <div className="grid grid-cols-2">
+          <div className="md:grid grid-cols-2">
             <div className="flex flex-col py-1">
               <label>MccName</label>
               <input
@@ -80,7 +80,7 @@ const Modal = ({ matchModal }) => {
                 className="border border-green-700 px-4 py-1 rounded mt-2"
               />
             </div>
-            <div className="flex flex-col py-1 ml-4">
+            <div className="flex flex-col py-1 md:ml-4">
               <label>Email address</label>
               <input
                 required
@@ -107,7 +107,7 @@ const Modal = ({ matchModal }) => {
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div> */}
-            <div className="flex flex-col py-1 ml-4">
+            <div className="flex flex-col py-1 md:ml-4">
               <label>Password</label>
               <input
                 required
@@ -127,7 +127,7 @@ const Modal = ({ matchModal }) => {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col py-3 ml-4">
+            <div className="flex flex-col py-3 md:ml-4">
               <label>Select District</label>
               <select className="border border-green-700 px-4 py-1 rounded mt-1">
                 {filteredDistricts.map((item, idx) => (

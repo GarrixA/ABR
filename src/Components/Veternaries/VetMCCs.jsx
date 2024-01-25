@@ -61,18 +61,18 @@ const VetMCCs = () => {
 
   return (
     <>
-      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
+      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-4 md:mx-10">
         <div className="flex justify-between items-center">
           <h1 className="mb-5">Employees</h1>
           <button
-            className="mx-3 bg-[#006ca5] px-2 py-1 text-white rounded flex items-center space-x-2"
+            className="md:mx-3 bg-[#006ca5] px-2 py-1 text-white rounded flex items-center space-x-2"
             onClick={matchModal}
           >
             <RiAddCircleFill className="text-[1.8rem]" /> <span>Register</span>
           </button>
         </div>
         
-        <Link to={"/vetdashboard/allemployees"}><button className="text-green-700 mx-2 top-28 left-40 absolute px-5">Export</button></Link>
+        <Link to={"/vetdashboard/allemployees"}><button className="text-green-700 mx-2 top-28 left-28 md:left-40 absolute px-5">Export</button></Link>
         <table
           className="tables pt-2"
           // ref={(el) => (componentRef.current = el)}
@@ -95,7 +95,7 @@ const VetMCCs = () => {
         </table>
         {openModal && <Modal matchModal={matchModal} />}
         <ToastContainer />
-        <div className="mt-10">
+        <div className="mt-10 pb-10">
           <ReactPaginate
             previousLabel={"Prev"}
             nextLabel={"Next"}

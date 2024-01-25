@@ -2,8 +2,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import provinces from "./province";
 import distr from "./district";
 
 const MccModal = ({ matchModal }) => {
@@ -11,55 +9,6 @@ const MccModal = ({ matchModal }) => {
   const [load, setLoad] = useState(false);
   const [selectedProvince, setSelectedProvince] = useState("");
   const [filteredDistricts, setFilteredDistricts] = useState(distr);
-
-  const handleProvinceChange = (event) => {
-    const selectedProvince = event.target.value;
-    setSelectedProvince(selectedProvince);
-    const filteredDistricts = getDistrictsForProvince(selectedProvince);
-    setFilteredDistricts(filteredDistricts);
-  };
-
-  const getDistrictsForProvince = (province) => {
-    if (province === "Kigali city") {
-      return ["Select", "Kicukiro", "Gasabo", "Nyarugenge"];
-    } else if (province === "Northern Province") {
-      return ["select", "Burera", "Gakenke", "Gicumbi", "Musanze", "Rulindo"];
-    } else if (province === "Southern Province") {
-      return [
-        "select",
-        "Gisagara",
-        "Huye",
-        "Kamonyi",
-        "Muhanga",
-        "Nyamagabe",
-        "Nyanza",
-        "Nyaruguru",
-        "Ruhango",
-        "Bugesera",
-      ];
-    } else if (province === "Eastern Province") {
-      return [
-        "select",
-        "Gatsibo",
-        "Kayonza",
-        "Kirehe",
-        "Ngoma",
-        "Nyagatare",
-        "Rwamagana",
-      ];
-    } else {
-      return [
-        "Select",
-        "Karongi",
-        "Ngororero",
-        "Nyabihu",
-        "Nyamasheke",
-        "Rubavu",
-        "Rusizi",
-        "Rutsiro",
-      ];
-    }
-  };
 
   return (
     <div className="mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.3rem] h-screen">
@@ -116,18 +65,8 @@ const MccModal = ({ matchModal }) => {
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div>
+            
             <div className="flex flex-col py-1 ml-4">
-              <label>Select Province</label>
-              <select
-                onChange={handleProvinceChange}
-                className="border border-green-700 px-4 py-1 rounded mt-1"
-              >
-                {provinces.map((item, idx) => (
-                  <option key={idx}>{item}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col py-3">
               <label>Select District</label>
               <select className="border border-green-700 px-4 py-1 rounded mt-1">
                 {filteredDistricts.map((item, idx) => (
