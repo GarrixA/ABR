@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const [load, setLoad] = useState()
+  const [load, setLoad] = useState();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,70 +25,63 @@ const Login = () => {
 
   const validatePassword = () => {
     let error = "";
-  
+
     if (password.length < 4) {
-      error = "Password must be at least 8 characters long at least one digit one special character one upper and lowercase letter";
+      error =
+        "Password must be at least 8 characters long at least one digit one special character one upper and lowercase letter";
     } else if (!/\d/.test(password)) {
       error = "Digit is missing";
-    } 
+    }
     // else if (!/[!@#$%^&*]/.test(password)) {
     //   error = "Special character is missing";
     // }
-     else if (!/[a-z]/.test(password)) {
+    else if (!/[a-z]/.test(password)) {
       error = "Lowercase letter is missing";
     } else if (!/[A-Z]/.test(password)) {
       error = "Uppercase letter is missing";
     }
-  
+
     setPasswordError(error);
   };
-  
 
   const handleSubmit = (e) => {
-    setLoad(true)
+    setLoad(true);
     e.preventDefault();
-    
+
     validateEmail();
     validatePassword();
-    if (
-      emailError ||
-      passwordError
-    )  {
-      const firstError = (
-        emailError ||
-        passwordError
-      )
+    if (emailError || passwordError) {
+      const firstError = emailError || passwordError;
 
       toast.error(`${firstError}`);
-      setLoad(false)
+      setLoad(false);
     } else {
-      setLoad(true)
-      setTimeout(()=>{
-        setLoad(false)
+      setLoad(true);
+      setTimeout(() => {
+        setLoad(false);
         if (email === "admin@gmail.com" && password === "Admin123") {
           navigate("/dashboard");
         } else if (email === "vet@gmail.com" && password === "Vet123") {
           navigate("/vetdashboard");
         } else if (email === "mcc@gmail.com" && password === "Mcc123") {
           navigate("/mccdashboard");
-        }else{
-          navigate("/")
+        } else {
+          navigate("/");
         }
-      }, 5000)
-      
+      }, 5000);
     }
   };
 
   return (
     <>
       <div className="wrapper w-full h-screen bg-no-repeat flex justify-center items-center">
-        <div className="blue bg-[#009048] w-[27%] h-[80%] rounded-l-md text-white flex flex-col justify-between">
+        <div className="blue bg-[#009048] w-[27%] h-[80%] rounded-l-md text-white hidden md:flex flex-col justify-between">
           <div className="top flex flex-col space-y-2 justify-center items-center">
             <div className="tit w-1/3 mt-10">
               <img src={img} alt="image" className=" bg-contain" />
             </div>
             <div className="decri px-14 text-3xl font-bold">
-              Welcome to MMPAS
+              Welcome to MPAS
             </div>
           </div>
           <div className="bootom flex flex-col items-center mb-14">
@@ -103,8 +96,14 @@ const Login = () => {
             <div className="foot">© All rights reserved. MMPAS 2024</div>
           </div>
         </div>
-        <div className="white bg-white px-10 w-[43%] h-[80%] rounded-r-md flex flex-col justify-center">
-          <p>RAB Admin</p>
+        <div className="white bg-white px-10 w-[90%] md:w-[43%] md:h-[80%] rounded-r-md flex flex-col justify-center">
+          <div className="top flex flex-col space-y-2 justify-center items-center py-4 md:hidden">
+            <div className="tit w-1/3 ">
+              <img src={img} alt="image" className=" bg-contain" />
+            </div>
+            <div className="decri px-1 text-xl md:text-3xl font-bold">Welcome to MPAS</div>
+          </div>
+
           <h1 className="text-4xl font-bold pb-2">Sign In</h1>
           <form className="flex flex-col w-full" onSubmit={handleSubmit}>
             <div className="flex flex-col py-3">
@@ -146,8 +145,15 @@ const Login = () => {
               {load ? "Loging in..." : "Login"}
             </button>
           </form>
+          <div className="bootom flex flex-col items-center  md:hidden">
+            <div className="acc flex flex-col items-center py-10"></div>
+            <div className="foot py-2 font-bold">
+              © All rights reserved. MPAS 2024
+            </div>
+          </div>
         </div>
-        <ToastContainer/>
+
+        <ToastContainer />
       </div>
     </>
   );
