@@ -9,8 +9,8 @@ const Dashboard = () => {
     <>
       <div className="mt-32">
         <h1 className="text-[1.3rem] font-bold ml-5">Dashboard</h1>
-        <div className='grid grid-cols-2 mx-2 h-96 p-2 mt-10'>
-          <div className='bg-white mx-2 p-2 rounded'>
+        <div className='flex flex-col gap-10 md:grid grid-cols-2 mx-2 h-screen md:h-96 p-2 mt-10'>
+          <div className='bg-white mx-2 p-2 rounded md:h-full h-[40%]'>
             <Line
               data={{
                 labels: chartData.map((it) => it.label),
@@ -27,8 +27,8 @@ const Dashboard = () => {
               }}
             />
           </div>
-          <div className=' flex justify-center bg-white mx-2 p-2 rounded'>
-            <div className=' w-[80%]'>
+          <div className=' flex justify-center bg-white mx-2 p-2 rounded md:h-full h-[40%]'>
+            <div className=' w-[80%] '>
             <Doughnut
               data={{
                 labels: chartData.map((it) => it.label),

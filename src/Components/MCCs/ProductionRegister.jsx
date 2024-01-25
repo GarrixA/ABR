@@ -4,9 +4,9 @@ const ProductionRegister = () => {
   return (
     <>
     <div className="mt-20 flex items-center justify-center h-screen">
-      <div className="formWrapp flex items-center justify-center w-[50%] bg-white p-4 rounded-xl shadow-xl">
-        <form className="w-[60%] space-y-2">
-          <h1 className="text-center text-2xl p-2 font-bold">Production Registration</h1>
+      <div className="formWrapp flex items-center justify-center w-[80%] md:w-[50%] bg-white p-4 rounded-xl shadow-xl">
+        <form className="w-[80%] md:w-[60%] space-y-2">
+          <h1 className="md:text-center text-[1.1rem] md:text-2xl md:p-2 font-bold">Production Registration</h1>
           <div className="farmer flex flex-col">
             <label className="text-xl font-semibold my-1">Farmer</label>
             <select className="px-4 py-1 rounded border border-green-600">

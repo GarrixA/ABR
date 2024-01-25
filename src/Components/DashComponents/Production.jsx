@@ -14,7 +14,7 @@ const Production = () => {
   ];
   return (
     <>
-      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
+      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-4 md:mx-10">
         <div className="flex justify-between items-center">
           <h1 className="mb-5">Employees</h1>
         </div>

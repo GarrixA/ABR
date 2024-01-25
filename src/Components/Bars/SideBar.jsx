@@ -61,12 +61,12 @@ const SideBar = () => {
         {auth.token ? <Outlet /> : <Navigate to={"/login"} />}
       </div>
       {openModal && (
-        <div className="links md:hidden absolute w-full top-[5.6rem] h-screen text-white flex flex-col space-y-4 text-[2rem] font-semibold px-6 bg-[#009048] ">
+        <div className="links md:hidden absolute w-full top-[5.4rem] h-screen text-white flex flex-col space-y-4 text-[1.4rem] font-semibold px-6 bg-[#009048] ">
         {navigations.map((item, idx) => {
           return (<NavLink
             key={idx}
             to={item.href}
-            className="flex items-center space-x-4 mt-24">
+            className="flex items-center space-x-4 mt-24 mx-10">
             <span className=" cursor-pointer space-x-4" onClick={toggleModal}>{item.icon}</span>
             <span className=" cursor-pointer space-x-4" onClick={toggleModal}>{item.name}</span>
           </NavLink>

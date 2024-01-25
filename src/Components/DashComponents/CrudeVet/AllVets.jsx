@@ -26,7 +26,7 @@ const AllVets = () => {
 
   return (
     <>
-      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-10">
+      <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-5 md:mx-10">
         <div className="flex justify-between items-center">
           <h1 className="mb-5">Veternaries</h1>
         </div>

@@ -92,7 +92,7 @@ const MCCs = () => {
         </table>
         {openModal && <Modal matchModal={matchModal} />}
         <ToastContainer />
-        <div className="mt-10">
+        <div className="mt-10 pb-10">
           <ReactPaginate
             previousLabel={"Prev"}
             nextLabel={"Next"}
