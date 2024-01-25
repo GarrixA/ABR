@@ -30,12 +30,9 @@ const SideBar = () => {
     <div className="wrapper flex relative ">
       {/* left side */}
       <div className="leftSide w-[15%] h-screen flex-col  fixed left-0 shadow-xl bg-[#009048] md:flex hidden">
-        <div className="log flex items-center py-4 px-6 space-x-2 border border-b-black bg-[#f1f1fb] pb-11">
-          <div className="img w-[40%]">
+        <div className="log flex items-center justify-center border border-b-black bg-[#f1f1fb] ">
+          <div className="img w-[50%] p-2">
             <Link to={"/"}><img src={image} alt="img" className=" object-contain" /></Link>
-          </div>
-           <div className="text font-bold uppercase">
-            <span className="text-[1.3rem]">Admin</span>
           </div>
         </div>
         <div className="links text-white flex flex-col space-y-4 text-[1.2rem] font-semibold px-6 bg-[#009048]">
@@ -53,11 +50,11 @@ const SideBar = () => {
       </div>
       {/* Right side */}
       <div className="rightSide h-screen absolute md:w-[85%] w-full md:right-0">
-        <div className="top w-full fixed flex items-center z-30 md:bg-[#f1f1fb] bg-[#009048] md:h-16 md:p-0 p-2">
+        <div className="top w-full fixed flex items-center z-30 md:bg-[#009048] bg-[#009048] md:h-16 md:p-0 p-2">
           <div className="img w-[20%] md:hidden ">
             <Link to={"/"}><img src={image} alt="img" className=" object-contain" /></Link>
           </div>
-          <h1 className="text-2xl font-semibold md:mx-10 mx-2">Hi Admin</h1>
+          <h1 className="text-2xl font-semibold md:mx-10 mx-2 text-white">Hi Admin</h1>
           <MdMenu className="absolute right-0 text-white text-4xl mx-5" onClick={toggleModal}/>
         </div>
         {/* <Outlet /> */}

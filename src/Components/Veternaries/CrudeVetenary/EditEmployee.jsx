@@ -60,17 +60,17 @@ const EditEmployee = () => {
       }
     };
   return (
-    <div className="wrapper mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.6rem] h-screen">
+    <div className=" mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.6rem] h-screen">
       <div className="w-[50%] bg-white p-10 rounded-lg shadow z-10">
-        <h1 className="text-2xl relative bottom-5 font-bold">Update Employee</h1>
+        <h1 className="text-2xl relative bottom-5 font-bold">Update Mcc</h1>
         <form className=" w-full ">
           <div className="grid grid-cols-2">
             <div className="flex flex-col py-1">
-              <label>Full Name</label>
+              <label>Mcc Name</label>
               <input
                 required
                 type="text"
-                placeholder="Full name"
+                placeholder="Mcc name"
                 className="border border-green-700 px-4 py-1 rounded mt-2"
               />
             </div>
@@ -92,7 +92,7 @@ const EditEmployee = () => {
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div>
-            <div className="flex flex-col py-1 ml-4">
+            {/* <div className="flex flex-col py-1 ml-4">
               <label>National ID</label>
               <input
                 required
@@ -100,8 +100,8 @@ const EditEmployee = () => {
                 placeholder="national ID"
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
-            </div>
-            <div className="flex flex-col py-1">
+            </div> */}
+            <div className="flex flex-col py-1 ml-4">
               <label>Password</label>
               <input
                 required
@@ -110,7 +110,7 @@ const EditEmployee = () => {
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div>
-            <div className="flex flex-col py-1 ml-4">
+            <div className="flex flex-col py-3 ">
               <label>Select Province</label>
               <select
                 onChange={handleProvinceChange}
@@ -121,7 +121,7 @@ const EditEmployee = () => {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col py-3">
+            <div className="flex flex-col py-3 ml-4">
               <label>Select District</label>
               <select className="border border-green-700 px-4 py-1 rounded mt-1">
                 {filteredDistricts.map((item, idx) => (
