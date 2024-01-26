@@ -72,6 +72,12 @@ const Login = () => {
     }
   };
 
+  const modalVar = {
+    
+  }
+
+  
+
   return (
     <>
       <div className="wrapper w-full h-screen bg-no-repeat flex justify-center items-center">
