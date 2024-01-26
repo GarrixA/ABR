@@ -86,3 +86,29 @@ body{
 .charts{
   display: flex;
 }
+
+#modal-bg{
+  /* background-color: blue; */
+  animation-name: md-bg;
+  animation-duration: 1.2s;
+}
+@keyframes md-bg{
+  0%{
+      right: 100%;
+  }100%{
+      right: 0%;
+  }
+}
+
+#modal-content{
+  animation-name: md-cont;
+  animation-duration: .2s;
+}
+
+@keyframes md-cont{
+  0%{
+      bottom: 0%;
+  }100%{
+      bottom: 100%;
+  }
+}

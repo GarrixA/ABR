@@ -60,7 +60,7 @@ const MccSideBar = () => {
         {auth.token ? <Outlet/> : <Navigate to={"/login"}/>}
       </div>
       {openModal && (
-        <div className="links md:hidden absolute w-full top-[5.4rem] h-screen text-white flex flex-col space-y-4 text-[1.4rem] font-semibold px-6 bg-[#009048] ">
+        <div id="modal-bg" className="links md:hidden absolute w-full top-[5.4rem] h-screen text-white flex flex-col space-y-4 text-[1.4rem] font-semibold px-6 bg-[#009048] ">
         {navigations.map((item, idx) => {
           return (<NavLink
             key={idx}
