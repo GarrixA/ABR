@@ -1,147 +1,155 @@
 const vetData = [
     {
-        name: "Garrix",
+        mccName: "Garrix",
         phone: "0749348934",
         email: "garr@gmail.com",
         district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Garrix",
+        mccName: "Garrix",
         phone: "0749348934",
         email: "garr@gmail.com",
         district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Garrix",
+        mccName: "Garrix",
         phone: "0749348934",
         email: "garr@gmail.com",
         district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Garrix",
+        mccName: "Garrix",
         phone: "0749348934",
         email: "garr@gmail.com",
         district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Garrix",
+        mccName: "Garrix",
         phone: "0749348934",
         email: "garr@gmail.com",
         district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Garrix",
+        mccName: "Garrix",
         phone: "0749348934",
         email: "garr@gmail.com",
         district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Mugisha",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "info@mug.com",
-        district: "Nyarugenge",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Mugisha",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "info@mug.com",
-        district: "Nyarugenge",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Mugisha",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "info@mug.com",
-        district: "Nyarugenge",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Mugisha",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "info@mug.com",
-        district: "Nyarugenge",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Mugisha",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "info@mug.com",
-        district: "Nyarugenge",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
     {
-        name: "Chelsea",
+        mccName: "Garrix",
         phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
-    },
-    {
-        name: "Chelsea",
-        phone: "0749348934",
-        email: "chels@gmail.com.com",
-        district: "Kicukiro",
-    },
-    {
-        name: "Gatuzo",
-        phone: "0749348934",
-        email: "gatu@gmail.com",
-        district: "Kicukiro",
-    },
-    {
-        name: "Gatuzo",
-        phone: "0749348934",
-        email: "gatu@gmail.com",
-        district: "Kicukiro",
-    },
-    {
-        name: "Gatuzo",
-        phone: "0749348934",
-        email: "gatu@gmail.com",
-        district: "Kicukiro",
-    },
-    {
-        name: "Gatuzo",
-        phone: "0749348934",
-        email: "gatu@gmail.com",
-        district: "Kicukiro",
+        email: "garr@gmail.com",
+        district: "Gasabo",
+        province: "kigali",
+        production: "450"
     },
 ]
 

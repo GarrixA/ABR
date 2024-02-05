@@ -1,12 +1,12 @@
 import "../../index.scss";
-import { Link, NavLink, Navigate, Outlet } from "react-router-dom";
+import { Link, NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
 import image from "../../images/RAB_Logo2.png";
 import { RiDashboardFill } from "react-icons/ri";
 import { LuMilk } from "react-icons/lu";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { MdLogout } from "react-icons/md";
 import { MdMenu } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const VetSideBar = () => {
 
@@ -20,8 +20,26 @@ const VetSideBar = () => {
     { icon: <RiDashboardFill />, name: "Dashboard", href: "/vetdashboard" },
     { icon: <LuMilk />, name: "Production", href: "/vetdashboard/vetproduction" },
     { icon: <HiBuildingOffice2 />, name: "MCCs", href: "/vetdashboard/vetmccs" },
-    { icon: <MdLogout />, name: "Log Out", href: "/login" },
+    { icon: <MdLogout />, name: "Log Out" },
   ]
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const adminString = localStorage.getItem("user")
+  const user = JSON.parse(adminString);
+
+  const handleLogOut = () =>{
+    localStorage.removeItem('token', null);
+    localStorage.removeItem('veterinary', "");
+    navigate("/login")
+  }
+
+
+  useEffect(()=>{
+    if(!token){
+      navigate('/login')
+    }
+  })
 
   return (
     <div className="wrapper flex relative">
@@ -37,6 +55,7 @@ const VetSideBar = () => {
             return (<NavLink
               key={idx}
               to={item.href}
+              onClick={item.name === "Log Out"? handleLogOut: null}
               className="flex items-center space-x-4 mt-4">
               <span className=" cursor-pointer space-x-4">{item.icon}</span>
               <span className=" cursor-pointer space-x-4">{item.name}</span>
@@ -63,6 +82,7 @@ const VetSideBar = () => {
           return (<NavLink
             key={idx}
             to={item.href}
+            onClick={item.name === "Log Out"? handleLogOut: null}
             className="flex items-center space-x-4 mt-24 mx-10">
             <span className=" cursor-pointer space-x-4" onClick={toggleModal}>{item.icon}</span>
             <span className=" cursor-pointer space-x-4" onClick={toggleModal}>{item.name}</span>

@@ -1,15 +1,12 @@
-import prodData from "./CrudeVet/prodData";
 import '../../index.scss'
 
 
 const Production = () => {
   const columns = [
     {
-      name: "Name",
-      quantity: "Quantity",
-      Date: "Date",
-      Total: "Total"
-    
+      District: "District",
+      month: "Month",
+      quantity: "Quantity"
     },
   ];
   return (
@@ -27,28 +24,22 @@ const Production = () => {
             {columns.map((col, idx) => {
               return (
                 <tr key={idx}>
-                  <th className="">{col.name}</th>
-                  <th className="">{col.quantity}</th>
-                  <th className="">{col.Date}</th>
-                  <th className="expand">{col.Total}</th>
+                  <th className="">{col.District}</th>
+                  <th className="">{col.month}</th>
+                  <th className="expand">{col.quantity}</th>
                 </tr>
               );
             })}
           </thead>
           <tbody className="text-slate-700">
-            {prodData.map((item, idx) => {
-              return (
                 <>
-                  <tr key={idx}>
-                    <td>{item.name}</td>
-                    <td>{item.quantity} litres</td>
-                    <td>{item.date}</td>
-                    <td>{item.total} litres</td>
+                  <tr >
+                    <td></td>
+                    <td> </td>
+                    <td>litres</td>
                     
                   </tr>
                 </>
-              );
-            })}
           </tbody>
         </table>
         

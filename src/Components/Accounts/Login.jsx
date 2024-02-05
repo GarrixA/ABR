@@ -5,78 +5,82 @@ import img from "../../images/RAB_Logo2.png";
 import "../../index.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Login = () => {
   const [load, setLoad] = useState();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
 
-  const validateEmail = () => {
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setEmailError("Invalid email address");
-    } else {
-      setEmailError("");
-    }
+    const isValid = emailRegex.test(newEmail);
+
+    setEmail(newEmail);
+    setIsValidEmail(isValid);
   };
 
-  const validatePassword = () => {
-    let error = "";
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    // Password must be at least 6 characters long and contain a mix of uppercase, lowercase, and special characters
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d?)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{6,}$/;
+    const isValid = passwordRegex.test(newPassword);
 
-    if (password.length < 4) {
-      error =
-        "Password must be at least 8 characters long at least one digit one special character one upper and lowercase letter";
-    } else if (!/\d/.test(password)) {
-      error = "Digit is missing";
-    }
-    // else if (!/[!@#$%^&*]/.test(password)) {
-    //   error = "Special character is missing";
-    // }
-    else if (!/[a-z]/.test(password)) {
-      error = "Lowercase letter is missing";
-    } else if (!/[A-Z]/.test(password)) {
-      error = "Uppercase letter is missing";
-    }
-
-    setPasswordError(error);
+    setPassword(newPassword);
+    setIsValidPassword(isValid);
   };
 
   const handleSubmit = (e) => {
-    setLoad(true);
     e.preventDefault();
 
-    validateEmail();
-    validatePassword();
-    if (emailError || passwordError) {
-      const firstError = emailError || passwordError;
-
-      toast.error(`${firstError}`);
-      setLoad(false);
-    } else {
-      setLoad(true);
-      setTimeout(() => {
-        setLoad(false);
-        if (email === "admin@gmail.com" && password === "Admin123") {
-          navigate("/dashboard");
-        } else if (email === "vet@gmail.com" && password === "Vet123") {
-          navigate("/vetdashboard");
-        } else if (email === "mcc@gmail.com" && password === "Mcc123") {
-          navigate("/mccdashboard");
-        } else {
-          navigate("/");
-        }
-      }, 5000);
+    if (!isValidEmail) {
+      toast.error("Invalid email please try again");
+      return;
     }
+
+    if (!isValidPassword) {
+      toast.error("Invalid password, please try again");
+      return;
+    }
+
+    axios({
+      method: "POST",
+      url: "http://localhost:5678/mpas/authentication/v1/auth/signin",
+      data: {
+        email: email,
+        password: password,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log("respo", response);
+        localStorage.setItem("token", response.data.access_token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        setLoad(false);
+        toast.success("Login successfully");
+
+        if (response.data.user.role == "admin") {
+          navigate("/dashboard");
+        } else if (response.data.user.role == "veterinary") {
+          navigate("/vetDashboard");
+        } else {
+          navigate("/MCCDashBoard");
+        }
+        console.log(response.data.user.role);
+        setLoad(false);
+      })
+      .catch((error) => {
+        console.log("err", error);
+        setLoad(false);
+      });
   };
-
-  const modalVar = {
-    
-  }
-
-  
 
   return (
     <>
@@ -107,7 +111,9 @@ const Login = () => {
             <div className="tit w-1/3 ">
               <img src={img} alt="image" className=" bg-contain" />
             </div>
-            <div className="decri px-1 text-xl md:text-3xl font-bold">Welcome to MPAS</div>
+            <div className="decri px-1 text-xl md:text-3xl font-bold">
+              Welcome to MPAS
+            </div>
           </div>
 
           <h1 className="text-4xl font-bold pb-2">Sign In</h1>
@@ -118,14 +124,18 @@ const Login = () => {
                 required
                 type="email"
                 placeholder="email"
-                className="border border-green-700 px-4 py-2 rounded mt-2"
+                className={`border px-4 py-2 rounded mt-2 ${
+                  isValidEmail ? "border-green-700" : "border-red-700"
+                }`}
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onInput={validateEmail}
+                onChange={handleEmailChange}
               />
-              {/* {emailError && (
-                <span className="validation-error">{emailError}</span>
-              )} */}
+              {!isValidEmail && (
+                <span className="text-black mt-1 border border-red-700 bg-red-300 py-[0.01rem] px-2">
+                  Please enter a valid email address like{" "}
+                  <b> example@gmail.com</b>
+                </span>
+              )}
             </div>
             <div className="flex flex-col py-3">
               <label>Password</label>
@@ -133,14 +143,18 @@ const Login = () => {
                 required
                 type="password"
                 placeholder="password"
-                className="border border-green-700 px-4 py-2 rounded mt-2"
+                className={`border px-4 py-2 rounded mt-2 ${
+                  isValidPassword ? "border-green-700" : "border-red-700"
+                }`}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onInput={validatePassword}
+                onChange={handlePasswordChange}
               />
-              {/* {passwordError && (
-                <span className="validation-error">{passwordError}</span>
-              )} */}
+              {!isValidPassword && (
+                <span className="text-red-700 mt-1 border border-red-700 bg-red-300 py-[0.01rem] px-2">
+                  Password must be at least 6 characters long and contain a mix
+                  of uppercase, lowercase, and special characters.
+                </span>
+              )}
             </div>
 
             <span className="text-blue-800 font-semibold underline cursor-pointer">

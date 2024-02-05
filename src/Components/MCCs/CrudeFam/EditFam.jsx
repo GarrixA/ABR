@@ -1,73 +1,73 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import provinces from "./province";
 import distr from "./district";
+import axios from "axios";
 
 const EditFam = () => {
     const navigate = useNavigate();
     const [load, setLoad] = useState(false);
-    const [selectedProvince, setSelectedProvince] = useState("");
-    const [filteredDistricts, setFilteredDistricts] = useState(distr);
-  
-    const handleProvinceChange = (event) => {
-      const selectedProvince = event.target.value;
-      setSelectedProvince(selectedProvince);
-      const filteredDistricts = getDistrictsForProvince(selectedProvince);
-      setFilteredDistricts(filteredDistricts);
-    };
-  
-    const getDistrictsForProvince = (province) => {
-      if (province === "Kigali city") {
-        return ["Select", "Kicukiro", "Gasabo", "Nyarugenge"];
-      } else if (province === "Northern Province") {
-        return ["select", "Burera", "Gakenke", "Gicumbi", "Musanze", "Rulindo"];
-      } else if (province === "Southern Province") {
-        return [
-          "select",
-          "Gisagara",
-          "Huye",
-          "Kamonyi",
-          "Muhanga",
-          "Nyamagabe",
-          "Nyanza",
-          "Nyaruguru",
-          "Ruhango",
-          "Bugesera",
-        ];
-      } else if (province === "Eastern Province") {
-        return [
-          "select",
-          "Gatsibo",
-          "Kayonza",
-          "Kirehe",
-          "Ngoma",
-          "Nyagatare",
-          "Rwamagana",
-        ];
-      } else {
-        return [
-          "Select",
-          "Karongi",
-          "Ngororero",
-          "Nyabihu",
-          "Nyamasheke",
-          "Rubavu",
-          "Rusizi",
-          "Rutsiro",
-        ];
-      }
-    };
+    const location = useLocation()
+    const data = location.state
+    // console.log(data)
+
+    const [fullName, setFullName] = useState(data.fullName);
+    const [email, setEmail] = useState(data.email);
+    const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber);
+    const [nationalId, setNationalId] = useState(data.nationalId);
+    const [district, setDistrict] = useState(data.district);
+    const {id} = useParams();
+    const formData = new FormData()
+    formData.append("fullName", fullName)
+    formData.append("email", email)
+    formData.append("nationalId", nationalId)
+    formData.append("phoneNumber", phoneNumber)
+    // formData.append("province", province)
+    formData.append("district", district)
+    
+    let token = localStorage.getItem("token")
+
+    const updateFarmer = (e) =>{
+      e.preventDefault();
+      setLoad(true)
+      axios({
+        method: "PATCH",
+        url: `http://localhost:5678/mpas/farmerNews/farmer/updateFarmers?id=${id}`,
+        data: formData,
+        headers:{
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      })
+      .then((response)=>{
+        console.log(response)
+        
+        setTimeout(()=>{
+          setLoad(false)
+          toast.success("Farmer updated successfully")
+          navigate("/mccdashboard/farmers")
+        }, 2000)
+      })
+      .catch((error)=>{
+        console.log(error)
+        toast.error("Error updating farmer")
+        setLoad(false)
+      })
+    }
+    
   return (
-    <div className="wrapper mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.6rem] h-screen">
+    <div className=" mt-20 ml-10 text-[1rem] flex items-center justify-center   w-full absolute inset-0 backdrop-filter backdrop-blur-sm top-[-1rem] left-[-2.6rem] h-screen">
       <div className="w-[50%] bg-white p-10 rounded-lg shadow z-10">
         <h1 className="text-2xl relative bottom-5 font-bold">Update Farmer</h1>
-        <form className=" w-full ">
+        <form className=" w-full " onSubmit={updateFarmer}>
           <div className="grid grid-cols-2">
             <div className="flex flex-col py-1">
               <label>Full Name</label>
               <input
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
                 required
                 type="text"
                 placeholder="Full name"
@@ -77,6 +77,8 @@ const EditFam = () => {
             <div className="flex flex-col py-1 ml-4">
               <label>Email address</label>
               <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
                 required
                 type="text"
                 placeholder="email"
@@ -86,6 +88,8 @@ const EditFam = () => {
             <div className="flex flex-col py-1">
               <label>Phone number</label>
               <input
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
                 required
                 type="number"
                 placeholder="phone"
@@ -95,43 +99,29 @@ const EditFam = () => {
             <div className="flex flex-col py-1 ml-4">
               <label>National ID</label>
               <input
+              value={nationalId}
+              onChange={(e) => setNationalId(e.target.value)}
                 required
                 type="number"
                 placeholder="national ID"
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div>
-            <div className="flex flex-col py-1">
-              <label>Password</label>
+            <div className="flex flex-col py-1 ">
+            <label>District</label>
               <input
+              value={district}
+              onChange={(e) => setDistrict(e.target.value)}
                 required
-                type="password"
-                placeholder="password"
+                type="text"
+                placeholder="district"
                 className="border border-green-700 px-4 py-1 rounded mt-1"
               />
             </div>
-            <div className="flex flex-col py-1 ml-4">
-              <label>Select Province</label>
-              <select
-                onChange={handleProvinceChange}
-                className="border border-green-700 px-4 py-1 rounded mt-1"
-              >
-                {provinces.map((item, idx) => (
-                  <option key={idx}>{item}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col py-3">
-              <label>Select District</label>
-              <select className="border border-green-700 px-4 py-1 rounded mt-1">
-                {filteredDistricts.map((item, idx) => (
-                  <option key={idx}>{item}</option>
-                ))}
-              </select>
-            </div>
+           
           </div>
           <div className="">
-            <button className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1">
+            <button className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1" onClick={updateFarmer}>
               {load ? "Updating..." : "Update"}
             </button>
           </div>

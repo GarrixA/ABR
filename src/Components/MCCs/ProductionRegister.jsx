@@ -1,38 +1,114 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const ProductionRegister = () => {
-  const farmers = ["Select", "Miggy", "Alya", "Kylie"]
+  const [farmers, setFarmers] = useState([]);
+  const [email, setEmail] = useState("");
+  const [quantity, setQuantity] = useState();
+
+  const formData = new FormData();
+  formData.append("quantity", quantity);
+  formData.append("email", email);
+
+  const getFarmers = () => {
+    axios({
+      method: "GET",
+      url: "http://localhost:5678/mpas/farmerNews/farmer/allFarmers",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        setFarmers(response.data.farmerList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getFarmers();
+  }, []);
+
+  let token = localStorage.getItem("token");
+  const addProducction = (e) => {
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url: "http://localhost:5678/mpas/milkProduction/addMilkProduction",
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        toast.success("Production added");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Failed adding production");
+      });
+  };
+
   return (
     <>
-    <div className="mt-20 flex items-center justify-center h-screen">
-      <div className="formWrapp flex items-center justify-center w-[80%] md:w-[50%] bg-white p-4 rounded-xl shadow-xl">
-        <form className="w-[80%] md:w-[60%] space-y-2">
-          <h1 className="md:text-center text-[1.1rem] md:text-2xl md:p-2 font-bold">Production Registration</h1>
-          <div className="farmer flex flex-col">
-            <label className="text-xl font-semibold my-1">Farmer</label>
-            <select className="px-4 py-1 rounded border border-green-600">
-              {farmers.map((fam, idx)=>{
-                return (
-                  <option key={idx}>{fam}</option>
-                )
-              })}
-            </select>
-          </div>
-          <div className="quantity flex flex-col">
+      <div className="mt-20 flex items-center justify-center h-screen">
+        <div className="formWrapp flex items-center justify-center w-[80%] md:w-[50%] bg-white p-4 rounded-xl shadow-xl">
+          <form
+            className="w-[80%] md:w-[60%] space-y-2"
+            onSubmit={addProducction}
+          >
+            <h1 className="md:text-center text-[1.1rem] md:text-2xl md:p-2 font-bold">
+              Production Registration
+            </h1>
+            <div className="farmer flex flex-col">
+              <label className="text-xl font-semibold my-1">Farmer</label>
+              <input
+                list="data"
+                type="text"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="px-4 py-1 rounded border border-green-600"
+              />
+              <datalist id="data">
+                {farmers.map((item) => (
+                  <option key={item._id}>{item.email}</option>
+                ))}
+              </datalist>
+            </div>
+            <div className="quantity flex flex-col">
               <label className="text-xl font-semibold my-1">Quantity</label>
-              <input type="number" placeholder="eg: 12" className="px-4 py-1 rounded border border-green-600"/>
-          </div>
-          <div className="manure flex flex-col">
+              <input
+                required
+                type="number"
+                placeholder="eg: 12"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                className="px-4 py-1 rounded border border-green-600"
+              />
+            </div>
+            {/* <div className="manure flex flex-col">
               <label className="text-xl font-semibold my-1">date/month</label>
               <input type="number" placeholder="eg: 02.02.2024" className="px-4 py-1 rounded border border-green-600"/>
-          </div>
-          <div className="my-4">
-          <button className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1   mt-4 mb-4">Register</button>
-          </div>
-        </form>
+          </div> */}
+            <div className="my-4">
+              <button
+                className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1   mt-4 mb-4"
+                onClick={addProducction}
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
- </>
-  )
-}
+    </>
+  );
+};
 
-export default ProductionRegister
+export default ProductionRegister;

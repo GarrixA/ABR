@@ -47,7 +47,7 @@ export default function App() {
             <Route path="mccs" element={<MCCs />} />
             <Route path="veternaries" element={<Veternaries />} />
             <Route path="myaccout" element={<MyAccount />} />
-            <Route path="editvet" element={<EditVet/>}/>
+            <Route path="editvet/:id" element={<EditVet/>}/>
             <Route path="allvets" element={<AllVets/>}/>
           </Route>
           <Route path="mccdashboard" element={<MccSideBar/>}>
@@ -57,7 +57,7 @@ export default function App() {
             <Route path="farmers" element={<Farmers/>}/>
             <Route path="mccaccount" element={<MccAccount/>}/>
             <Route path="allfam" element={<AllFarmers/>}/>
-            <Route path="editfam" element={<EditFam/>}/>
+            <Route path="editfam/:id" element={<EditFam/>}/>
           </Route>
           <Route path="vetdashboard" element={<VetSideBar/>}>
             <Route index element={<VetDashboard/>}/>
@@ -65,7 +65,7 @@ export default function App() {
             <Route path="vetmccs" element={<VetMCCs/>}/>
             <Route path="vetaccount" element={<VetAccount/>}/>
             <Route path="allemployees" element={<AllEmployees/>}/>
-            <Route path="editemployee" element={<EditEmployee/>}/>
+            <Route path="editemployee/:id" element={<EditEmployee/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
