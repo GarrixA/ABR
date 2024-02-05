@@ -12,13 +12,12 @@ const MCCs = () => {
   const componentRef = useRef(null);
   const columns = [
     {
-      name: "Name",
+      mccName: "mccName",
       email: "Email",
       phone: "Phone",
       district: "District",
-      status: "Status",
-      Province: "Province",
-      NationalId: "National Id",
+      province: "province",
+      production: "production",
     },
   ];
   const matchModal = () => {
@@ -38,14 +37,13 @@ const MCCs = () => {
       return (
         <>
           <tr key={idx}>
-            <td>{item.name}</td>
+            <td>{item.mccName}</td>
             <td>{item.email}</td>
             <td>{item.phone}</td>
-            <td>{item.Province}</td>
+            <td>{item.province}</td>
             <td>{item.district}</td>
-            <td>{item.NationalId}</td>
-            <td>{item.NationalId}</td>
-            <td>{item.status}</td>
+            <td>{item.production} Ltrs</td>
+            
           </tr>
         </>
       );
@@ -66,7 +64,7 @@ const MCCs = () => {
           content={() => componentRef.current}
           documentTitle="New Doc"
           pageStyle="print"
-          onAfterPrint={() => toast.success("Document has been printed")}
+          // onAfterPrint={() => toast.success("Document has been printed")}
         />
         <table
           className="tables pt-2"
@@ -76,14 +74,13 @@ const MCCs = () => {
             {columns.map((col, idx) => {
               return (
                 <tr key={idx}>
-                  <th className="">{col.name}</th>
+                  <th className="">{col.mccName}</th>
                   <th className="">{col.email}</th>
                   <th className="">{col.phone}</th>
-                  <th className="">{col.Province}</th>
+                  <th className="">{col.province}</th>
                   <th className="">{col.district}</th>
-                  <th className="">{col.NationalId}</th>
-                  <th className="">{col.status}</th>
-                  <th className="expand">{col.action}</th>
+                  <th className="expand">{col.production}</th>
+                  
                 </tr>
               );
             })}

@@ -3,13 +3,14 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { RiAddCircleFill } from "react-icons/ri";
 import "../../index.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./CrudeVet/Modal";
 import { Link } from "react-router-dom";
 // import ReactToPrint from "react-to-print";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
+import axios from "axios";
 
 const Veternaries = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -24,6 +25,53 @@ const Veternaries = () => {
       action: "Actions",
     },
   ];
+
+  const [vet, setVet] = useState([])
+
+  const getVet = () => {
+    axios({
+      method: "GET",
+      url: "http://localhost:5678/mpas/veterian/vet/allVets",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((response) => {
+        // console.log(response)
+        setVet(response.data.veterinaryList)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(() => {
+    getVet()
+  }, []);
+
+  const  handleDelete = (id)=>{
+    window.confirm("are you sure you whant to delete veterinary")
+    console.log("id:", id)
+    let token = localStorage.getItem("token")
+    axios({
+      method: "DELETE",
+      url: `http://localhost:5678/mpas/veterian/vet/removeVet?id=${id}`,
+      headers: {
+        Authorization:  `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+    .then((res)=>{
+      console.log(res)
+      toast.success("veterinary deleted")
+    })
+    .catch((error)=>{
+      console.log(error)
+      toast.error("error deleting veterinary")
+
+    })
+  }
+
   const matchModal = () => {
     setOpenModal(!openModal);
   };
@@ -31,28 +79,28 @@ const Veternaries = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const dataPerPage = 8;
   const pageVisited = pageNumber * dataPerPage;
-  const pageCount = Math.ceil(vetData.length / dataPerPage);
+  const pageCount = Math.ceil(vet.length / dataPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  const displayData = vetData
+  const displayData = vet
     .slice(pageVisited, pageVisited + dataPerPage)
     .map((item, idx) => {
       return (
         <>
           <tr key={idx}>
-            <td>{item.name}</td>
+            <td>{item.fullName}</td>
             <td>{item.email}</td>
-            <td>{item.phone}</td>
+            <td>{item.phoneNumber}</td>
             <td>{item.district}</td>
             <td>Active</td>
             <td className="flex justify-evenly">
-              <Link to={"/dashboard/editvet"}>
+              <Link to={`/dashboard/editvet/${item._id}`} state={item}>
                 <span className="text-green-700 cursor-pointer">
-                  <FaEdit />
+                <FaEdit />
                 </span>
               </Link>
-              <span className="text-red-700 cursor-pointer">
+              <span className="text-red-700 cursor-pointer" onClick={() => handleDelete(item._id)}>
                 <MdDelete />
               </span>
             </td>
@@ -73,11 +121,11 @@ const Veternaries = () => {
             <RiAddCircleFill className="text-[1.8rem]" /> <span>Register</span>
           </button>
         </div>
-        
+
         <Link to={"/dashboard/allvets"}><button className="text-green-700 mx-2 top-28 left-28 md:left-40 absolute px-5">Export</button></Link>
         <table
           className="tables pt-2"
-          // ref={(el) => (componentRef.current = el)}
+        // ref={(el) => (componentRef.current = el)}
         >
           <thead>
             {columns.map((col, idx) => {

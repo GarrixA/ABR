@@ -3,12 +3,13 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { RiAddCircleFill } from "react-icons/ri";
 import "../../index.scss";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import Modal from "./CrudeFam/MccModal";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
+import axios from "axios";
 
 const Farmers = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -18,39 +19,86 @@ const Farmers = () => {
       email: "Email",
       phone: "Phone",
       district: "District",
-      status: "Status",
+      // status: "Status",
       action: "Actions",
     },
   ];
   const matchModal = () => {
     setOpenModal(!openModal);
   };
+ // claudia intergration
+ 
+ const [farmer, setFarmer] = useState([])
+ const getFarmers = () =>{
+  axios({
+    method: "GET",
+    url: "http://localhost:5678/mpas/farmerNews/farmer/allFarmers",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then((response)=>{
+    console.log(response)
+    setFarmer(response.data.farmerList)
+  })
+  .catch((error)=>{
+    console.log(error)
+  })
+ }
+
+ useEffect(()=>{
+  getFarmers();
+ }, [])
+
+ const handleDelete = (id) =>{
+  if(window.confirm("are you sure you want to delete this farmer?")){
+    let token = localStorage.getItem("token");
+    console.log(token)
+
+    axios({
+      method: "DELTE",
+      url: `http://localhost:5678/mpas/farmerNews/farmer/deleteFarmer?id=${id}`,
+      headers:{
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((response)=>{
+      console.log(response)
+      toast.success("Farmer deleted successfully")
+    })
+    .catch((error)=>{
+      console.log(error)
+      toast.error("Error deletting Farmer")
+      console.log(id)
+    })
+  }
+}
 
   const [pageNumber, setPageNumber] = useState(0);
   const dataPerPage = 8;
   const pageVisited = pageNumber * dataPerPage;
-  const pageCount = Math.ceil(vetData.length / dataPerPage);
+  const pageCount = Math.ceil(farmer.length / dataPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  const displayData = vetData
+  const displayData = farmer
     .slice(pageVisited, pageVisited + dataPerPage)
     .map((item, idx) => {
       return (
         <>
           <tr key={idx}>
-            <td>{item.name}</td>
+            <td>{item.fullName}</td>
             <td>{item.email}</td>
-            <td>{item.phone}</td>
+            <td>{item.phoneNumber}</td>
             <td>{item.district}</td>
-            <td>Active</td>
+            {/* <td>Active</td> */}
             <td className="flex justify-evenly">
-              <Link to={"/mccdashboard/editfam"}>
+              <Link to={`/mccdashboard/editfam/${item._id}`} state={item}>
                 <span className="text-green-700 cursor-pointer">
                   <FaEdit />
                 </span>
               </Link>
-              <span className="text-red-700 cursor-pointer">
+              <span className="text-red-700 cursor-pointer" onClick={()=> handleDelete(item._id)}>
                 <MdDelete />
               </span>
             </td>
@@ -59,6 +107,10 @@ const Farmers = () => {
       );
     });
 
+
+
+    
+    
   return (
     <>
       <div className="tableWrapper mt-28 text-[1.3rem] font-bold mx-5 md:mx-10">
@@ -84,7 +136,7 @@ const Farmers = () => {
                   <th className="">{col.email}</th>
                   <th className="">{col.phone}</th>
                   <th className="">{col.district}</th>
-                  <th className="">{col.status}</th>
+                  {/* <th className="">{col.status}</th> */}
                   <th className="expand">{col.action}</th>
                 </tr>
               );
