@@ -1,10 +1,11 @@
 import vetData from "../VetArray";
 import "../../../index.scss";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const AllVets = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -23,6 +24,28 @@ const AllVets = () => {
     setOpenModal(!openModal);
   };
   
+  const [vet, setVet] = useState([])
+
+  const getVet = () => {
+    axios({
+      method: "GET",
+      url: "https://mpasw.onrender.com/mpas/veterian/vet/allVets",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((response) => {
+        // console.log(response)
+        setVet(response.data.veterinaryList)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(() => {
+    getVet()
+  }, []);
 
   return (
     <>
@@ -60,15 +83,15 @@ const AllVets = () => {
             })}
           </thead>
           <tbody className="text-slate-700">
-            {vetData.map((item, idx) => {
+            {vet.map((item, idx) => {
               return (
                 <>
                   <tr key={idx}>
-                    <td>{item.name}</td>
+                    <td>{item.fullName}</td>
                     <td>{item.email}</td>
-                    <td>{item.phone}</td>
+                    <td>{item.phoneNumber}</td>
                     <td>{item.district}</td>
-                    <td>Kigali</td>
+                    <td>{item.province}</td>
                     <td>Active</td>
                   </tr>
                 </>

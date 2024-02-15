@@ -14,7 +14,7 @@ const Modal = ({ matchModal }) => {
   const [mccName, setMccName] = useState("")
     const [mccEmail, setMccEmail] = useState("")
     const [sector, setSector] = useState("")
-    const [phoneNumber, setPhoneNumber] = useState("") // reka nkore undi mu mcc ahari ndi gukoresha credential zitari zo. o
+    const [phoneNumber, setPhoneNumber] = useState("")
     const [nationalId, setNationalId] = useState("")
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(true);
@@ -77,7 +77,7 @@ const Modal = ({ matchModal }) => {
 
     axios({
       method: "POST",
-      url: "http://localhost:5678/mpas/mcc/addMcc",
+      url: "https://mpasw.onrender.com/mpas/mcc/addMcc",
       data :formData ,
       headers: {
         Authorization: `Bearer ${token}`,
@@ -85,9 +85,9 @@ const Modal = ({ matchModal }) => {
       }
     })
     .then((response) =>{
-      console.log(response)
-      toast.success("Mcc added successfully")
+      // console.log(response)
       setTimeout(()=>{
+        toast.success("Mcc added successfully")
         location.reload()
       }, 1000)
     })
@@ -155,15 +155,6 @@ const Modal = ({ matchModal }) => {
                 </span>
               )}
             </div>
-            {/* <div className="flex flex-col py-1 ml-4">
-              <label>National ID</label>
-              <input
-                required
-                type="number"
-                placeholder="national ID"
-                className="border border-green-700 px-4 py-1 rounded mt-1"
-              />
-            </div> */}
             <div className="flex flex-col py-1 md:ml-4">
               <label>Sector</label>
               <input
@@ -193,32 +184,15 @@ const Modal = ({ matchModal }) => {
                 </span>
               )}
             </div>
-            {/* <div className="flex flex-col py-3 ">
-              <label>Select Province</label>
-              <select
-                onChange={handleProvinceChange}
-                className="border border-green-700 px-4 py-1 rounded mt-1"
-              >
-                {provinces.map((item, idx) => (
-                  <option key={idx}>{item}</option>
-                ))}
-              </select>
-            </div> */}
-            {/* <div className="flex flex-col py-3 md:ml-4">
-              <label>Select District</label>
-              <select className="border border-green-700 px-4 py-1 rounded mt-1">
-                {filteredDistricts.map((item, idx) => (
-                  <option key={idx}>{item}</option>
-                ))}
-              </select>
-            </div> */}
           </div>
           <div className="">
             <button className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1" onClick={async (e) =>{
               e.preventDefault()
               addMcc();
               if (isValidPhoneNumber && isValidNationalId && isValidEmail) {
-                matchModal();
+                setTimeout(()=>{
+                  matchModal();
+                },2000)
               }
             }}>
               {load ? "Registering..." : "Register"}

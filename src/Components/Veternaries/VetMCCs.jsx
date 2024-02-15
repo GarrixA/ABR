@@ -6,7 +6,7 @@ import "../../index.scss";
 import { useEffect, useState } from "react";
 import Modal from "./CrudeVetenary/VetModal";
 import { Link, useParams } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
@@ -32,13 +32,13 @@ const VetMCCs = () => {
   const fetchFarmers = ()=>{
     axios({
       method: "GET",
-      url:"http://localhost:5678/mpas/mcc/listOfMcc",
+      url:"https://mpasw.onrender.com/mpas/mcc/listOfMcc",
       headers:{
         "Content-Type": "application/json"
       }
     })
     .then((response) => {
-      console.log(response)
+      // console.log(response)
       setFarmer(response.data.mccList)
     })
     .catch((error)=>{
@@ -56,7 +56,7 @@ const VetMCCs = () => {
       console.log("to", token)
       axios({
         method: "DELETE",
-        url: `http://localhost:5678/mpas/mcc/deleteMcc?id=${id}`,
+        url:`https://mpasw.onrender.com/mpas/mcc/deleteMcc?id=${id}`,
         headers: {
           "Content-Type": "application/json",
           Authorization : `Bearer ${token}`
@@ -64,12 +64,14 @@ const VetMCCs = () => {
       })
       .then(( response ) => {
         console.log(response)
-        const updates = [...farmer];
-        updates.splice(index, 1);
-        setFarmer(updates);
+        setTimeout(()=>{
+          location.reload()
+        }, 3000)
+        toast.success(response.data.message)
       })
       .catch((error)=>{
         console.log(error)
+        toast.error("failed to delete Mcc")
       })
     }
   }

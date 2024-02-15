@@ -19,8 +19,8 @@ const MccDashboard = () => {
                     label: "Milk Production",
                     data: chartData.map((it) => it.value),
                     barThickness: 60,
-                    backgroundColor: "#c29d59",
-                    borderColor: "#c29d59"
+                    backgroundColor: "#009048",
+                    borderColor: "#009048"
                     
                   },             
                 ]
@@ -37,8 +37,8 @@ const MccDashboard = () => {
                     label: "Milk Production",
                     data: chartData.map((it) => it.value),
                     barThickness: 60,
-                    backgroundColor: [
-                      "#c29d59"
+                     backgroundColor: [
+                      "#009048", "#98ABEE", "#2D9596","#9AD0C2","#6962AD","#265073","#43766C","#86B6F6","#176B87","#647D87","#5C8374","#9EC8B9"
                     ],
                   },
              

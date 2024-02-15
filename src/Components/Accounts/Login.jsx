@@ -37,6 +37,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoad(true)
 
     if (!isValidEmail) {
       toast.error("Invalid email please try again");
@@ -50,7 +51,7 @@ const Login = () => {
 
     axios({
       method: "POST",
-      url: "http://localhost:5678/mpas/authentication/v1/auth/signin",
+      url: "https://mpasw.onrender.com/mpas/authentication/v1/auth/signin",
       data: {
         email: email,
         password: password,
@@ -64,7 +65,6 @@ const Login = () => {
         localStorage.setItem("token", response.data.access_token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         setLoad(false);
-        toast.success("Login successfully");
 
         if (response.data.user.role == "admin") {
           navigate("/dashboard");
@@ -75,9 +75,11 @@ const Login = () => {
         }
         console.log(response.data.user.role);
         setLoad(false);
+        toast.success("Login successfully");
       })
       .catch((error) => {
         console.log("err", error);
+        toast.error("login failed")
         setLoad(false);
       });
   };
@@ -96,14 +98,12 @@ const Login = () => {
           </div>
           <div className="bootom flex flex-col items-center mb-14">
             <div className="acc flex flex-col items-center py-10">
-              Don't have an account?
-              <Link to={"/register"}>
-                <span className="my-1 underline font-semibold">
-                  Get started
+              {/* Don't have an account? */}
+                <span className="my-1 font-semibold">
+                  {/* Get started */}
                 </span>
-              </Link>
             </div>
-            <div className="foot">© All rights reserved. MMPAS 2024</div>
+            <div className="foot">© All rights reserved. MPAS 2024</div>
           </div>
         </div>
         <div className="white bg-white px-10 w-[90%] md:w-[43%] md:h-[80%] rounded-r-md flex flex-col justify-center">

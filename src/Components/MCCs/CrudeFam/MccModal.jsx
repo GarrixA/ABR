@@ -10,7 +10,7 @@ const MccModal = ({ matchModal }) => {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
 
-  const [fullName, setFullName] = useState("");
+  const [farmerName, setFarmerName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [nationalId, setNationalId] = useState("");
@@ -21,7 +21,7 @@ const MccModal = ({ matchModal }) => {
   const [isValidNationalId, setIsValidNationalId] = useState(true);
 
   const formData = new FormData();
-  formData.append("fullName", fullName);
+  formData.append("farmerName", farmerName);
   formData.append("email", email);
   formData.append("nationalId", nationalId);
   formData.append("phoneNumber", phoneNumber);
@@ -60,7 +60,7 @@ const MccModal = ({ matchModal }) => {
   };
 
   const addFarmer = () => {
-    
+    setLoad(true)
     
     if (!isValidPhoneNumber) {
       toast.error("Invalid phone number, please try again");
@@ -80,7 +80,7 @@ const MccModal = ({ matchModal }) => {
     // }
     axios({
       method: "POST",
-      url: "http://localhost:5678/mpas/farmerNews/farmer/addFarmer",
+      url: "https://mpasw.onrender.com/mpas/farmerNews/farmer/addFarmer",
       data: formData,
       headers: {
         "Content-Type": "application/json",
@@ -89,13 +89,15 @@ const MccModal = ({ matchModal }) => {
     })
       .then((response) => {
         console.log(response);
+        setLoad(false)
         setTimeout(() => {
           toast.success("Farmer added successfully");
           navigate("/mccdashboard/farmers");
           location.reload();
-        }, 3000);
+        });
       })
       .catch((error) => {
+        setLoad(false)
         console.log(error);
         toast.error("failed to add Farmer");
       });
@@ -112,10 +114,10 @@ const MccModal = ({ matchModal }) => {
         <form className=" w-full " onSubmit={addFarmer}>
           <div className="grid grid-cols-2">
             <div className="flex flex-col py-1">
-              <label>Mcc Name</label>
+              <label>Farmer Name</label>
               <input
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={farmerName}
+                onChange={(e) => setFarmerName(e.target.value)}
                 required
                 type="text"
                 placeholder="Full name"
@@ -206,7 +208,9 @@ const MccModal = ({ matchModal }) => {
                 e.preventDefault();
                 await addFarmer();
                 if (isValidPhoneNumber && isValidNationalId) {
-                  matchModal();
+                  setTimeout(()=>{
+                    matchModal();
+                  }, 4500)
                 }
               }}
             >

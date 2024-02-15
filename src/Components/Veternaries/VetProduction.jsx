@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import mccData from "./CrudeVetenary/mccData";
 import '../../index.scss'
 import { useEffect, useState } from "react";
@@ -8,9 +9,8 @@ const VetProduction = () => {
   const columns = [
     {
       name: "Sector",
-      quantity: "Current Quantity",
       Date: "Month",
-      Total: "Total Quantity"
+      Total: "Quantity"
     
     },
   ];
@@ -20,13 +20,13 @@ const VetProduction = () => {
   const fetchProduction = ()=>{
     axios({
       method: "GET",
-      url: "http://localhost:5678/mpas/milkProduction/allMilkProductions",
+      url: "https://mpasw.onrender.com/mpas/milkProduction/allMilkProductions",
       headers: {
         "Content-Type": "application/json",
       }
     })
     .then((response)=>{
-      console.log(response)
+      // console.log(response)
       setProduction(response.data.milkProduction)
     })
     .catch((error)=>{
@@ -41,7 +41,7 @@ const VetProduction = () => {
     <>
       <div className="tableWrapper pb-10 mt-28 text-[1.3rem] font-bold mx-4 md:mx-10">
         <div className="flex justify-between items-center">
-          <h1 className="mb-5">Employees production is {production.length}</h1>
+          <h1 className="mb-5">Sectors production times are {production.length} in number</h1>
         </div>
       
         <table
@@ -53,7 +53,6 @@ const VetProduction = () => {
               return (
                 <tr key={idx}>
                   <th className="">{col.name}</th>
-                  <th className="">{col.quantity}</th>
                   <th className="">{col.Date}</th>
                   <th className="expand">{col.Total}</th>
                 </tr>
@@ -66,11 +65,8 @@ const VetProduction = () => {
                 <>
                   <tr key={idx}>
                     <td>{item.sector}</td>
-                    {/* current quantinty will go below this line */}
-                    <td>{item.currentQuantity} litres</td>
                     <td>February</td>
                     <td>{item.quantity} litres</td>
-                    {/* total quantity is above this line */}
                   </tr>
                 </>
               );

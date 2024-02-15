@@ -1,11 +1,12 @@
 import vetData from "./VetArray";
 import "../../index.scss";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "./CrudeVet/Modal";
 import ReactToPrint from "react-to-print";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from "react-paginate";
+import axios from "axios";
 
 const MCCs = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -17,21 +18,43 @@ const MCCs = () => {
       phone: "Phone",
       district: "District",
       province: "province",
-      production: "production",
     },
   ];
   const matchModal = () => {
     setOpenModal(!openModal);
   };
 
+  const [mcc, setMcc] = useState([])
+
+  const getVet = () => {
+    axios({
+      method: "GET",
+      url: "https://mpasw.onrender.com/mpas/mcc/listOfMcc",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((response) => {
+        // console.log(response)
+        setMcc(response.data.mccList)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(() => {
+    getVet()
+  }, []);
+
   const [pageNumber, setPageNumber] = useState(0);
   const dataPerPage = 8;
   const pageVisited = pageNumber * dataPerPage;
-  const pageCount = Math.ceil(vetData.length / dataPerPage);
+  const pageCount = Math.ceil(mcc.length / dataPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
-  const displayData = vetData
+  const displayData = mcc
     .slice(pageVisited, pageVisited + dataPerPage)
     .map((item, idx) => {
       return (
@@ -39,11 +62,9 @@ const MCCs = () => {
           <tr key={idx}>
             <td>{item.mccName}</td>
             <td>{item.email}</td>
-            <td>{item.phone}</td>
+            <td>{item.phoneNumber}</td>
             <td>{item.province}</td>
             <td>{item.district}</td>
-            <td>{item.production} Ltrs</td>
-            
           </tr>
         </>
       );

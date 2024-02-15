@@ -32,7 +32,7 @@ const Farmers = () => {
  const getFarmers = () =>{
   axios({
     method: "GET",
-    url: "http://localhost:5678/mpas/farmerNews/farmer/allFarmers",
+    url: "https://mpasw.onrender.com/mpas/farmerNews/farmer/allFarmers",
     headers: {
       "Content-Type": "application/json"
     }
@@ -56,13 +56,17 @@ const Farmers = () => {
     console.log(token)
 
     axios({
-      method: "DELTE",
-      url: `http://localhost:5678/mpas/farmerNews/farmer/deleteFarmer?id=${id}`,
+      method: "DELETE",
+      url:`https://mpasw.onrender.com/mpas/farmerNews/farmer/deleteFarmer?id=${id}`,
       headers:{
         Authorization: `Bearer ${token}`
       }
     })
     .then((response)=>{
+      
+      setTimeout(()=>{
+        location.reload()
+      }, 3000)
       console.log(response)
       toast.success("Farmer deleted successfully")
     })
@@ -87,7 +91,7 @@ const Farmers = () => {
       return (
         <>
           <tr key={idx}>
-            <td>{item.fullName}</td>
+            <td>{item.farmerName}</td>
             <td>{item.email}</td>
             <td>{item.phoneNumber}</td>
             <td>{item.district}</td>

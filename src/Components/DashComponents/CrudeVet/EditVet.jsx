@@ -2,14 +2,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditVet = () => {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
   const location = useLocation();
   const data = location.state
-  // console.log("data:", data);
+  console.log("data:", data);
 
   const [email, setEmail] = useState(data.email);
   const [fullName, setFullName] = useState(data.fullName);
@@ -18,24 +19,34 @@ const EditVet = () => {
   const [password, setPassword] = useState(data.password);
   const {id} = useParams();
 
+  const formData = new FormData()
+  formData.append("email", email)
+  formData.append("fullName", fullName)
+  formData.append("phoneNumber", phoneNumber)
+  formData.append("nationalId", nationalId)
+  formData.append("password", password)
+
   const EditVeterinary = (e) => {
     e.preventDefault();
+    setLoad(true)
     axios({
       method: 'PATCH',
-      url: `http://localhost:5678/mpas/veterian/vet/updateVet?id=${id}`,
-      data: data,
+      url: `https://mpasw.onrender.com/mpas/veterian/vet/updateVet?id=${id}`,
+      data: formData,
       headers: {
         'Content-Type': 'application/json'
       },
     })
       .then((respons) => {
         console.log("res", respons)
-        toast.success("Update succss")
+        setLoad(false)
+          toast.success("Update succss")
         navigate("/dashboard/veternaries")
       })
       .catch((error) => {
+        setLoad(false)
         console.log(error)
-        toast.error("No updates")
+        toast.error("Update failed")
       })
   }
 
@@ -115,6 +126,7 @@ const EditVet = () => {
           </div>
         </form>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

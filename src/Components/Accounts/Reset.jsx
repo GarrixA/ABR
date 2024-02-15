@@ -18,7 +18,7 @@ const Reset = () => {
             Don't have an account?
             <span className="my-1 underline font-semibold">Get started</span>
           </div>
-          <div className="foot">© All rights reserved. MMPAS 2023</div>
+          <div className="foot">© All rights reserved. MPAS 2024</div>
         </div>
       </div>
       <div className="white bg-white px-10 w-[43%] h-[80%] rounded-r-md flex flex-col justify-center">

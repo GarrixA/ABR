@@ -123,7 +123,7 @@ const Register = () => {
               <img src={img} alt="image" className=" bg-contain" />
             </div>
             <div className="decri px-14 text-3xl font-bold">
-              Welcome to MMPAS
+              Welcome to MPAS
             </div>
           </div>
           <div className="bootom flex flex-col items-center mb-14">
@@ -135,7 +135,7 @@ const Register = () => {
                 </span>
               </Link>
             </div>
-            <div className="foot">© All rights reserved. MMPAS 2024</div>
+            <div className="foot">© All rights reserved. MPAS 2024</div>
           </div>
         </div>
         <div className="white bg-[#fff] px-10 w-[43%] h-[80%] rounded-r-md flex flex-col justify-center">

@@ -13,14 +13,14 @@ const EditFam = () => {
     const data = location.state
     // console.log(data)
 
-    const [fullName, setFullName] = useState(data.fullName);
+    const [farmerName, setFullName] = useState(data.farmerName);
     const [email, setEmail] = useState(data.email);
     const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber);
     const [nationalId, setNationalId] = useState(data.nationalId);
     const [district, setDistrict] = useState(data.district);
     const {id} = useParams();
     const formData = new FormData()
-    formData.append("fullName", fullName)
+    formData.append("farmerName", farmerName)
     formData.append("email", email)
     formData.append("nationalId", nationalId)
     formData.append("phoneNumber", phoneNumber)
@@ -34,7 +34,7 @@ const EditFam = () => {
       setLoad(true)
       axios({
         method: "PATCH",
-        url: `http://localhost:5678/mpas/farmerNews/farmer/updateFarmers?id=${id}`,
+        url: `https://mpasw.onrender.com/mpas/farmerNews/farmer/updateFarmers?id=${id}`,
         data: formData,
         headers:{
           Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ const EditFam = () => {
             <div className="flex flex-col py-1">
               <label>Full Name</label>
               <input
-              value={fullName}
+              value={farmerName}
               onChange={(e) => setFullName(e.target.value)}
                 required
                 type="text"

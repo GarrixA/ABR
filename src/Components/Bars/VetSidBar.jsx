@@ -70,7 +70,7 @@ const VetSideBar = () => {
         <div className="img w-[20%] md:hidden ">
             <Link to={"/"}><img src={image} alt="img" className=" object-contain" /></Link>
           </div>
-          <h1 className="text-2xl font-semibold md:mx-10 mx-2 text-white">Vet Gasana</h1>
+          <h1 className="text-2xl font-semibold md:mx-10 mx-2 text-white">Hi Veterinary</h1>
           <MdMenu className="absolute right-0 text-white text-4xl mx-5" onClick={toggleModal}/>
         </div>
         {/* <Outlet /> */}

@@ -10,7 +10,7 @@ const Modal = ({ matchModal }) => {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false);
 
-  
+
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -59,7 +59,8 @@ const Modal = ({ matchModal }) => {
     setNationalId(newNationalId);
     setIsValidNationalId(isValid);
   };
-  const handleLogin = (e)=>{
+  const handleLogin = (e) => {
+    e.preventDefault();
     if (!isValidPhoneNumber) {
       toast.error("Invalid phone number, please try again");
       return;
@@ -72,29 +73,29 @@ const Modal = ({ matchModal }) => {
       toast.error("Invalid email please try again");
       return;
     }
+
     
-    e.preventDefault();
     axios({
       method: "POST",
-      url: "http://localhost:5678/mpas/veterian/vet/addVet",
+      url: "https://mpasw.onrender.com/mpas/veterian/vet/addVet",
       data: formData,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Baerer ${token}`
       }
     })
-    .then((response)=>{
-      console.log(response)
-      setTimeout(()=>{
-        toast.success("veterinary added successfully")
-      navigate("/dashboard/veternaries")
-      }, 300)
-      
-    })
-    .catch((error)=>{
-      console.log(error)
-      toast.error("failed to add veterinary")
-    })
+      .then((response) => {
+        console.log(response)
+        setTimeout(() => {
+          toast.success("veterinary added successfully")
+          navigate("/dashboard/veternaries")
+        }, 300)
+
+      })
+      .catch((error) => {
+        console.log(error)
+        toast.error("failed to add veterinary")
+      })
   }
 
   return (
@@ -110,8 +111,8 @@ const Modal = ({ matchModal }) => {
             <div className="flex flex-col py-1">
               <label>Full Name</label>
               <input
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                 required
                 type="text"
                 placeholder="Full name"
@@ -121,14 +122,13 @@ const Modal = ({ matchModal }) => {
             <div className="flex flex-col py-1 md:ml-4">
               <label>Email address</label>
               <input
-              value={email}
-              onChange={handleEmailChange}
+                value={email}
+                onChange={handleEmailChange}
                 required
                 type="text"
                 placeholder="email"
-                className={`border border-green-700 px-4 py-1 rounded mt-2 ${
-                  isValidEmail ? "border-green-700" : "border-red-700"
-                }`}
+                className={`border border-green-700 px-4 py-1 rounded mt-2 ${isValidEmail ? "border-green-700" : "border-red-700"
+                  }`}
               />
               {!isValidEmail && (
                 <span className="text-black mt-1 border border-red-700 bg-red-300 py-[0.01rem] px-2">
@@ -140,14 +140,13 @@ const Modal = ({ matchModal }) => {
             <div className="flex flex-col py-1">
               <label>Phone number</label>
               <input
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
                 required
                 type="number"
                 placeholder="phone"
-                className={`border border-green-700 px-4 py-1 rounded mt-1 ${
-                  isValidPhoneNumber ? "border-green-700" : "border-red-700"
-                }`}
+                className={`border border-green-700 px-4 py-1 rounded mt-1 ${isValidPhoneNumber ? "border-green-700" : "border-red-700"
+                  }`}
               />
               {!isValidPhoneNumber && (
                 <span className="text-red-700 mt-1 border border-red-700 bg-red-300 py-[0.01rem] px-2">
@@ -158,14 +157,13 @@ const Modal = ({ matchModal }) => {
             <div className="flex flex-col py-1 md:ml-4">
               <label>National ID</label>
               <input
-              value={nationalId}
-              onChange={handleNationalIdChange}
+                value={nationalId}
+                onChange={handleNationalIdChange}
                 required
                 type="number"
                 placeholder="national ID"
-                className={`border border-green-700 px-4 py-1 rounded mt-1 ${
-                  isValidNationalId ? "border-green-700" : "border-red-700"
-                }`}
+                className={`border border-green-700 px-4 py-1 rounded mt-1 ${isValidNationalId ? "border-green-700" : "border-red-700"
+                  }`}
               />
               {!isValidNationalId && (
                 <span className="text-red-700 mt-1 border border-red-700 bg-red-300 py-[0.01rem] px-2">
@@ -192,9 +190,9 @@ const Modal = ({ matchModal }) => {
                   <option key={idx}>{item}</option>
                 ))}
               </select> */}
-               <input
-              value={province}
-              onChange={(e) => setProvince(e.target.value)}
+              <input
+                value={province}
+                onChange={(e) => setProvince(e.target.value)}
                 required
                 type="text"
                 placeholder="province"
@@ -208,9 +206,9 @@ const Modal = ({ matchModal }) => {
                   <option key={idx}>{item}</option>
                 ))}
               </select> */}
-               <input
-              value={district}
-              onChange={(e) => setDistrict(e.target.value)}
+              <input
+                value={district}
+                onChange={(e) => setDistrict(e.target.value)}
                 required
                 type="text"
                 placeholder="district"
@@ -221,7 +219,7 @@ const Modal = ({ matchModal }) => {
           <div className="">
             <button type="submit" className="bg-[#1a8cff] rounded uppercase text-white font-semibold w-full py-1 mt-4"
               onClick={async (e) => {
-                e.preventDefault();
+                // e.preventDefault();
                 await handleLogin();
                 if (isValidPhoneNumber && isValidNationalId) {
                   matchModal();
@@ -233,7 +231,7 @@ const Modal = ({ matchModal }) => {
           </div>
         </form>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

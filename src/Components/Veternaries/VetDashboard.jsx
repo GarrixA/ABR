@@ -21,8 +21,8 @@ const VetDashboard = () => {
                     label: "Milk Production",
                     data: vetData.map((it) => it.value),
                     barThickness: 60,
-                    backgroundColor: "#c29d59",
-                    borderColor: "#c29d59"
+                    backgroundColor: "#009048",
+                    borderColor: "#009048"
                     
                   },             
                 ]
@@ -40,7 +40,7 @@ const VetDashboard = () => {
                     data: vetData.map((it) => it.value),
                     barThickness: 60,
                     backgroundColor: [
-                      "#c29d59"
+                      "#009048", "#98ABEE", "#2D9596"
                     ],
                   },
              

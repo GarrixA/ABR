@@ -13,22 +13,27 @@ const EditEmployee = () => {
     const location = useLocation();
     const data = location.state
     // console.log(data)
-    // 
-
     const [mccName, setMccName] = useState(data.mccName)
     const [mccEmail, setMccEmail] = useState(data.email)
     const [district, setDistrict] = useState(data.district)
     const [phoneNumber, setPhoneNumber] = useState(data.phoneNumber)
     const {id} = useParams();
     console.log(mccName)
+
+    const formData = new FormData()
+    formData.append("mccName", mccName)
+    formData.append("email", mccEmail)
+    formData.append("district", district)
+    formData.append("phoneNumber", phoneNumber)
+
     const handleUpdate = (e) =>{
       e.preventDefault();
-// cool ntakibzo
+      setLoad(true)
       let token = localStorage.getItem("token")
       axios({
         method: "PATCH",
-        url:`http://localhost:5678/mpas/mcc/updateMcc?id=${id}`,
-        data: data,
+        url:`https://mpasw.onrender.com/mpas/mcc/updateMcc?id=${id}`,
+        data: formData,
         headers:{
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -36,10 +41,12 @@ const EditEmployee = () => {
       })
       .then((response)=>{
         console.log(" res",response)
-        console.log(id)
-        console.log(mccName)
+        toast.success("Employee Updated successfully")
+        navigate("/vetdashboard/vetmccs")
       })
       .then((error)=>{
+        setLoad(false)
+        toast.error("Failed to update employee")
         console.log(error)
       })
     }

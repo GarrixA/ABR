@@ -1,4 +1,3 @@
-import vetData from "./VetArray";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { RiAddCircleFill } from "react-icons/ri";
@@ -31,7 +30,7 @@ const Veternaries = () => {
   const getVet = () => {
     axios({
       method: "GET",
-      url: "http://localhost:5678/mpas/veterian/vet/allVets",
+      url: "https://mpasw.onrender.com/mpas/veterian/vet/allVets",
       headers: {
         "Content-Type": "application/json"
       }
@@ -55,7 +54,7 @@ const Veternaries = () => {
     let token = localStorage.getItem("token")
     axios({
       method: "DELETE",
-      url: `http://localhost:5678/mpas/veterian/vet/removeVet?id=${id}`,
+      url: `https://mpasw.onrender.com/mpas/veterian/vet/removeVet?id=${id}`,
       headers: {
         Authorization:  `Bearer ${token}`,
         "Content-Type": "application/json"
@@ -63,7 +62,10 @@ const Veternaries = () => {
     })
     .then((res)=>{
       console.log(res)
-      toast.success("veterinary deleted")
+      setTimeout(()=>{
+        location.reload()
+      }, 3000)
+      toast.success(res.data.message) //kora login as admin
     })
     .catch((error)=>{
       console.log(error)
