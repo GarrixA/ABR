@@ -1,3 +1,7 @@
+This app is designed to record the production of milk from **Sector** - **District** - **Province**
+
+An admin will register a veterinary and veterinary will register mcc and then the record will start from there. Remember to use valid email address because you'll get credentials on email
+
 # frontend-milkproduction
 
         Use those credentials to navigate through
